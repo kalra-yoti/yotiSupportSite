@@ -1,0 +1,346 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
+   
+}
+
+@font-face {
+  font-family: 'CustomFont1';
+  
+  src: url('/resource/CustomFont/GT-Eesti-Display-Bold.woff2') format('woff2');
+}
+
+
+.category-landing {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    position: relative;
+    background-color: #ffffff;
+
+    text-align: left;
+    color: #ffffff; /* White text on blue background */
+    font-family: 'CustomFont', GT-Eesti-Display-Regular ;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+  }
+  
+  
+  .div {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  .solid-chevron {
+    position: relative;
+    width: 6px;
+    height: 8px;
+  }
+  
+  .font {
+    font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
+  }
+  
+  
+  .category-landing .div-2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  
+  .category-landing .div-3 {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    position: relative;
+    flex: 1;
+    flex-grow: 1;
+  }
+  
+  .category-landing .icon-search-search {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    transform: rotate(180deg);
+  }
+  
+  .category-landing .path {
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    top: 5px;
+    left: 5px;
+    transform: rotate(-180deg);
+  }
+  
+  .category-landing .label {
+    position: relative;
+    flex: 1;
+    height: 28px;
+    margin-top: -1.00px;
+    font-family: "GT  Eesti Display-Regular", Helvetica;
+    font-weight: 400;
+    color: #546072;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+  
+  .category-landing .button {
+    all: unset;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    padding: 16px;
+    position: relative;
+    flex: 0 0 auto;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 2px solid;
+    border-color: #2875bc;
+  }
+  
+  .category-landing .text {
+    position: relative;
+    width: fit-content;
+    margin-top: -2.00px;
+    font-family: "GT  Eesti Display-Bold", Helvetica;
+    font-weight: 700;
+    color: #2875bc;
+    font-size: 16px;
+    text-align: left;
+    letter-spacing: 0.08px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+  
+  .category-landing .div-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    padding: 40px 24px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+    background-color: #F4FAFF;
+  }
+  
+  .category-landing .div-4 {
+    display: flex;
+    flex-direction: column;
+    max-width: 936px;
+    align-items: flex-start;
+    gap: 32px;
+    position: relative;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  
+  .category-landing .breadcrumb {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .category-landing .page-link-label {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-weight: 700;
+    color: #27619B;
+    font-size: 16px;
+    line-height: 23.52px;
+    font-family: 'CustomFont1', GT-Eesti-Display-Bold !important;
+    
+    font-style: normal;
+  }
+  
+  .category-landing .solid-chevron {
+    position: relative;
+    width: 6px;
+    height: 8px;
+  }
+  
+  .category-landing .page-link-label-2 {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-weight: 400;
+    color: #333B40;
+    font-size: 16px;
+    line-height: 23.52px;
+    
+    font-style: normal;
+  }
+  
+  .category-landing .div-5 {
+    display: inline-flex;
+    align-items: center;
+    gap: 24px;
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .category-landing .rectangle {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    background-color: #9ba5b4;
+    border-radius: 8px;
+  }
+  
+  .category-landing .category {
+    position: relative;
+    width: fit-content;
+    color: #333b40;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36.48px; /* 36.48px */
+  }
+  
+  .category-landing .div-6 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 56px;
+    padding: 80px 24px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  
+  .category-landing .div-7 {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+    border-radius: 8px;
+  }
+  
+  .category-landing .text-wrapper-2 {
+    position: relative;
+    margin-top: -1.00px;
+    font-family: 'CustomFont1', GT-Eesti-Display-Bold !important ;
+    font-weight: 700;
+    color: #333b40;
+    font-size: 20px;
+    line-height: 23.6px;
+    font-style: normal;
+
+  }
+
+  .category-landing .text-wrapper-5 {
+    position: relative;
+    margin-top: -1.00px;
+    
+    font-weight: 700;
+    color: #333b40;
+    font-size: 24px;
+    line-height: 28px;
+    font-style: normal;
+    letter-spacing: 0px;
+    font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
+
+  }
+  
+  .category-landing .div-8 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+
+    color: #27619B;
+    /* GTEesti Link/GTE Link 1 */
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 136%;
+  
+}
+
+  
+  
+  .category-landing .text-wrapper-3 {
+    position: relative;
+    align-self: stretch;
+    margin-top: -1.00px;
+    text-align: left;
+    color: #27619b;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24.48px; /* 24.48px */
+    font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
+  }
+  
+
+  
+  .category-landing .div-9 {
+    display: flex;
+    flex-direction: column;
+    width: 640px;
+    align-items: flex-start;
+    gap: 56px;
+    position: relative;
+  }
+  
+  .category-landing .div-10 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  
+
+  
+  .category-landing .article-text-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: 0 0 auto;
+  }
+  
+  .category-landing .article-title {
+    position: relative;
+    flex: 1;
+    margin-top: -1.00px;
+    font-weight: 700;
+    color: #546072;
+    font-size: 18px;
+    font-style: normal;
+    line-height:24.8px;
+    text-align: left;
+    font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
+  }
+  
+ 
+  
