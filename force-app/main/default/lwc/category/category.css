@@ -237,6 +237,15 @@
   }
   
 
+  .category-landing .div-9 {
+    display: flex;
+    flex-direction: column;
+    width: 640px;
+    align-items: flex-start;
+    gap: 56px;
+    position: relative;
+  }
+
   
   
   
