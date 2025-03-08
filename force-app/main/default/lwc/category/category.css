@@ -36,11 +36,7 @@
     flex: 0 0 auto;
   }
 
-  .solid-chevron {
-    position: relative;
-    width: 6px;
-    height: 8px;
-  }
+  
   
   .font {
     font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
@@ -56,72 +52,7 @@
   }
   
   
-  .category-landing .div-3 {
-    display: flex;
-    align-items: flex-start;
-    gap: 4px;
-    position: relative;
-    flex: 1;
-    flex-grow: 1;
-  }
-  
-  .category-landing .icon-search-search {
-    position: relative;
-    width: 28px;
-    height: 28px;
-    transform: rotate(180deg);
-  }
-  
-  .category-landing .path {
-    position: absolute;
-    width: 19px;
-    height: 19px;
-    top: 5px;
-    left: 5px;
-    transform: rotate(-180deg);
-  }
-  
-  .category-landing .label {
-    position: relative;
-    flex: 1;
-    height: 28px;
-    margin-top: -1.00px;
-    font-family: "GT  Eesti Display-Regular", Helvetica;
-    font-weight: 400;
-    color: #546072;
-    font-size: 16px;
-    letter-spacing: 0;
-    line-height: 24px;
-    white-space: nowrap;
-  }
-  
-  .category-landing .button {
-    all: unset;
-    box-sizing: border-box;
-    display: inline-flex;
-    align-items: center;
-    padding: 16px;
-    position: relative;
-    flex: 0 0 auto;
-    background-color: #ffffff;
-    border-radius: 8px;
-    border: 2px solid;
-    border-color: #2875bc;
-  }
-  
-  .category-landing .text {
-    position: relative;
-    width: fit-content;
-    margin-top: -2.00px;
-    font-family: "GT  Eesti Display-Bold", Helvetica;
-    font-weight: 700;
-    color: #2875bc;
-    font-size: 16px;
-    text-align: left;
-    letter-spacing: 0.08px;
-    line-height: 20px;
-    white-space: nowrap;
-  }
+
   
   .category-landing .div-wrapper {
     display: flex;
@@ -279,6 +210,17 @@
   
 }
 
+.category-landing .div-10 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
   
   
   .category-landing .text-wrapper-3 {
@@ -296,25 +238,9 @@
   
 
   
-  .category-landing .div-9 {
-    display: flex;
-    flex-direction: column;
-    width: 640px;
-    align-items: flex-start;
-    gap: 56px;
-    position: relative;
-  }
   
-  .category-landing .div-10 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-    flex: 0 0 auto;
-  }
+  
+ 
   
 
   
