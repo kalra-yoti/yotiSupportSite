@@ -1,10 +1,10 @@
 import { LightningElement } from 'lwc';
-import righticon from '@salesforce/resourceUrl/rightIcon';
+
 
 export default class Category extends LightningElement {
 
 
-    rightIconT =  righticon;
+    
 
 
     topicLink = [{'id':1,'name':'Topic link'},{'id':2,'name':'Topic link'},{'id':3,'name':'Topic link'},{'id':4,'name':'Topic link'}];
