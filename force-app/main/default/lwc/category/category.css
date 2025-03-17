@@ -1,106 +1,87 @@
 @font-face {
-    font-family: 'CustomFont';
-    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
-   
+  font-family: 'CustomFont';
+  src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'CustomFont1';
-  
-  src: url('/resource/CustomFont/GT-Eesti-Display-Bold.woff2') format('woff2');
+font-family: 'CustomFont1';
+src: url('/resource/CustomFont/GT-Eesti-Display-Bold.woff2') format('woff2');
 }
 
-
 .category-landing {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: flex-start;
-    position: relative;
-    background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  position: relative;
+  background-color: #ffffff;
+  text-align: left;
+  color: #ffffff; /* White text on blue background */
+  font-family: 'CustomFont', GT-Eesti-Display-Regular ;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+}
 
-    text-align: left;
-    color: #ffffff; /* White text on blue background */
-    font-family: 'CustomFont', GT-Eesti-Display-Regular ;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-  }
-  
+.category-landing .div-6 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 56px;
+  padding: 80px 24px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
 
+.category-landing .div-7 {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  border-radius: 8px;
+}
 
+.category-landing .text-wrapper-2 {
+  position: relative;
+  margin-top: -1.00px;
+  font-family: 'CustomFont1', GT-Eesti-Display-Bold !important ;
+  font-weight: 700;
+  color: #333b40;
+  font-size: 20px;
+  line-height: 23.6px;
+  font-style: normal;
+}
 
-  
+.category-landing .text-wrapper-5 {
+  position: relative;
+  margin-top: -1.00px;
+  font-weight: 700;
+  color: #333b40;
+  font-size: 24px;
+  line-height: 28px;
+  font-style: normal;
+  letter-spacing: 0px;
+  font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
+}
 
-  
- 
-  
-
-  .category-landing .div-6 {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 56px;
-    padding: 80px 24px;
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-    flex: 0 0 auto;
-  }
-  
-  .category-landing .div-7 {
-    display: flex;
-    flex-direction: column;
-    width: 240px;
-    align-items: flex-start;
-    gap: 16px;
-    position: relative;
-    border-radius: 8px;
-  }
-  
-  .category-landing .text-wrapper-2 {
-    position: relative;
-    margin-top: -1.00px;
-    font-family: 'CustomFont1', GT-Eesti-Display-Bold !important ;
-    font-weight: 700;
-    color: #333b40;
-    font-size: 20px;
-    line-height: 23.6px;
-    font-style: normal;
-
-  }
-
-  .category-landing .text-wrapper-5 {
-    position: relative;
-    margin-top: -1.00px;
-    
-    font-weight: 700;
-    color: #333b40;
-    font-size: 24px;
-    line-height: 28px;
-    font-style: normal;
-    letter-spacing: 0px;
-    font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
-
-  }
-  
-  .category-landing .div-8 {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-    flex: 0 0 auto;
-
-    color: #27619B;
-    /* GTEesti Link/GTE Link 1 */
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 136%;
-  
+.category-landing .div-8 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+  color: #27619B;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 136%;
 }
 
 .category-landing .div-10 {
@@ -114,61 +95,154 @@
   flex: 0 0 auto;
 }
 
-  
-  
-  .category-landing .text-wrapper-3 {
-    position: relative;
-    align-self: stretch;
-    margin-top: -1.00px;
-    text-align: left;
-    color: #27619b;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 24.48px; /* 24.48px */
-    font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
+.category-landing .text-wrapper-3 {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1.00px;
+  text-align: left;
+  color: #27619b;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24.48px; /* 24.48px */
+  font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
+  cursor: pointer;
+}
+
+.category-landing  .text-wrapper-3:hover {
+  text-decoration: underline;
+ 
+}
+
+.category-landing  .text-wrapper-3:active {
+  color: #1F3653;
+}
+
+.category-landing .div-9 {
+  display: flex;
+  flex-direction: column;
+  width: 640px;
+  align-items: flex-start;
+  gap: 56px;
+  position: relative;
+}
+
+.category-landing .article-text-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.category-landing .article-title {
+  position: relative;
+  flex: 1;
+  margin-top: -1.00px;
+  font-weight: 700;
+  color: #546072;
+  font-size: 18px;
+  font-style: normal;
+  line-height:24.8px;
+  text-align: left;
+  font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
+  cursor:pointer;
+}
+
+.category-landing  .article-title:hover {
+  text-decoration: underline;
+}
+
+/* Change color when the text is pressed (active) */
+.category-landing  .article-title:active {
+  color: #333B40;  /* Change color to red (or any color you want) */
+}
+
+/* Media Queries for responsiveness */
+
+/* Tablet: 768px - 1024px */
+@media (max-width: 1024px) {
+  .category-landing .div-6 {
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px;
   }
-  
+
+  .category-landing .div-7,
+  .category-landing .div-9 {
+      width: 100%;
+  }
+
+  .category-landing .div-8 {
+      gap: 12px;
+  }
+
+  .category-landing .div-10 {
+      gap: 16px;
+  }
+
+  .category-landing .text-wrapper-2 {
+      font-size: 18px;
+  }
+
+  .category-landing .text-wrapper-5 {
+      font-size: 20px;
+  }
+
+  .category-landing .text-wrapper-3 {
+      font-size: 16px;
+  }
+
+  .category-landing .article-title {
+      font-size: 16px;
+  }
+}
+
+/* Mobile: 320px - 768px */
+@media (max-width: 768px) {
+  .category-landing {
+      font-size: 18px;
+  }
+
+  .category-landing .div-6 {
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 16px;
+  }
+
+  .category-landing .div-7 {
+      width: 100%;
+  }
 
   .category-landing .div-9 {
-    display: flex;
-    flex-direction: column;
-    width: 640px;
-    align-items: flex-start;
-    gap: 56px;
-    position: relative;
+      width: 100%;
+      gap: 24px;
   }
 
-  
-  
-  
- 
-  
-
-  
-  .category-landing .article-text-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    position: relative;
-    align-self: stretch;
-    width: 100%;
-    flex: 0 0 auto;
+  .category-landing .div-8 {
+      gap: 8px;
   }
-  
+
+  .category-landing .div-10 {
+      gap: 12px;
+  }
+
+  .category-landing .text-wrapper-2 {
+      font-size: 16px;
+  }
+
+  .category-landing .text-wrapper-5 {
+      font-size: 18px;
+  }
+
+  .category-landing .text-wrapper-3 {
+      font-size: 14px;
+  }
+
   .category-landing .article-title {
-    position: relative;
-    flex: 1;
-    margin-top: -1.00px;
-    font-weight: 700;
-    color: #546072;
-    font-size: 18px;
-    font-style: normal;
-    line-height:24.8px;
-    text-align: left;
-    font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
+      font-size: 14px;
   }
-  
- 
-  
+}
