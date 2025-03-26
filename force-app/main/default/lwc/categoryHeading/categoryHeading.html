@@ -6,19 +6,24 @@
             <div class="breadcrumb">
               <div class="div-2">
                <div class="div">
-                  <div class="page-link-label">Businesses</div>
-                  <img class="solid-chevron" src={rightIconT} />
+                  <div class="page-link-label" onclick={handleRedirect}>{type}</div>
+                  <img  class="solid-chevron" src={rightIconT} />
                 </div>
                 
               </div>
-              <div class="page-link-label-2">Category</div>
+              <div class="page-link-label-2">{product}</div>
             </div>
             <div class="div-5">
-              <div class="rectangle"></div>
-              <div class="category font">Category</div>
+              <div class="rectangle" lwc:if={isBusiness}> 
+                <img  style="width: 32px;height: 32px; margin: 15px 15px 15px 15px;" src={buildingImage} />
+              </div>
+              <div class="rectangle" lwc:else> 
+                <img  style="width: 32px;height: 32px; margin: 15px 15px 15px 15px;" src={trustImageTemp} />
+              </div>
+              <div class="category font">{product}</div>
             </div>
           </div>
         </div>
 
     </div>    
-</template>
+</template> 

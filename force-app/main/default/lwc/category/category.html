@@ -1,33 +1,28 @@
 <template>
-
-    <div class="category-landing">
-      <div class="div-6">
-        <div class="div-7">
-          <div class="text-wrapper-2">On this page:</div>
-          <div class="div-8">
-            <template for:each={topicLink} for:item="item">
-              <div key={item.id} class="text-wrapper-3">{item.name}</div>
-            </template>
-          </div>
-        </div>
-        <div class="div-9">
-          <div class="div-10">
-            <template for:each={topicList} for:item="item">
-                <div key={item.id} class="text-wrapper-5">{item.name}</div>
-                <div key={item.id} class="div-8" style="">
-                    <template for:each={titleLink} for:item="item1">
-                        <li  class="article-text-link" key={item1.id}><p class="article-title">{item1.name}</p></li>
-                    </template>
-                </div>
-            </template>
-
-            
-          </div>
+  <div class="category-landing">
+    <div class="div-6">
+      <div class="div-7">
+        <div class="text-wrapper-2">On this page:</div>
+        <div class="div-8">
+          <template for:each={topicLink} for:item="item">
+            <div key={item.id} class="text-wrapper-3" data-topic-id={item.id} onclick={handleScroll}>{item.name}</div>
+          </template>
         </div>
       </div>
-      
+      <div class="div-9">
+        <div class="div-10">
+          <template  for:each={topicList} for:item="item">
+            <div key={item.id} id={item.id} data-id={item.dataId} class="topic-section">
+              <div class="text-wrapper-5"><p class={item.dataId}>{item.name}</p></div>
+              <div class="div-8">
+                <template for:each={titleLink} for:item="item1">
+                  <li class="article-text-link" key={item1.id}><p class="article-title">{item1.name}</p></li>
+                </template>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
     </div>
-  
-
-    
+  </div>
 </template>

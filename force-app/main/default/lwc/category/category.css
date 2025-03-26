@@ -41,7 +41,9 @@ src: url('/resource/CustomFont/GT-Eesti-Display-Bold.woff2') format('woff2');
   width: 240px;
   align-items: flex-start;
   gap: 16px;
-  position: relative;
+  position: sticky;
+  top: 20px; /* Distance from top when sticky */
+  height: fit-content;
   border-radius: 8px;
 }
 
@@ -59,6 +61,7 @@ src: url('/resource/CustomFont/GT-Eesti-Display-Bold.woff2') format('woff2');
 .category-landing .text-wrapper-5 {
   position: relative;
   margin-top: -1.00px;
+  margin-bottom: 24px;
   font-weight: 700;
   color: #333b40;
   font-size: 24px;
@@ -171,7 +174,12 @@ src: url('/resource/CustomFont/GT-Eesti-Display-Bold.woff2') format('woff2');
       padding: 60px 20px;
   }
 
-  .category-landing .div-7,
+  .category-landing .div-7{
+    position: relative; /* Remove sticky on mobile */
+      top: auto; /* Reset top value */
+      width: 100%;
+      margin-bottom: 20px;
+  }
   .category-landing .div-9 {
       width: 100%;
   }
@@ -185,19 +193,19 @@ src: url('/resource/CustomFont/GT-Eesti-Display-Bold.woff2') format('woff2');
   }
 
   .category-landing .text-wrapper-2 {
-      font-size: 18px;
+     
   }
 
   .category-landing .text-wrapper-5 {
-      font-size: 20px;
+     
   }
 
   .category-landing .text-wrapper-3 {
-      font-size: 16px;
+     
   }
 
   .category-landing .article-title {
-      font-size: 16px;
+     
   }
 }
 
@@ -214,7 +222,11 @@ src: url('/resource/CustomFont/GT-Eesti-Display-Bold.woff2') format('woff2');
   }
 
   .category-landing .div-7 {
+      
+      position: relative; /* Remove sticky on mobile */
+      top: auto; /* Reset top value */
       width: 100%;
+      margin-bottom: 20px;
   }
 
   .category-landing .div-9 {
@@ -231,18 +243,18 @@ src: url('/resource/CustomFont/GT-Eesti-Display-Bold.woff2') format('woff2');
   }
 
   .category-landing .text-wrapper-2 {
-      font-size: 16px;
+     
   }
 
   .category-landing .text-wrapper-5 {
-      font-size: 18px;
+     
   }
 
   .category-landing .text-wrapper-3 {
-      font-size: 14px;
+    
   }
 
   .category-landing .article-title {
-      font-size: 14px;
+     
   }
 }

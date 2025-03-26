@@ -129,6 +129,14 @@
     border-radius: 8px;
   }
 
+  .category-landing .shape {
+    position: absolute;
+    width: 13px;
+    height: 28px;
+    top: 2px;
+    left: 2px;
+  }
+
   .category-landing .category {
     position: relative;
     width: fit-content;
