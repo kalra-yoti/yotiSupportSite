@@ -40,8 +40,8 @@ export default class CategoryHeading extends LightningElement {
         this.product = urlParams.get('product'); // Returns 'value2'
 
 
-        console.log('param1:', this.param1Value);
-        console.log('param2:', this.param2Value);
+        console.log('param1:', this.type,JSON.stringify(window.location));
+        console.log('param2:', this.product);
     }
 
 

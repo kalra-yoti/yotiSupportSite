@@ -1,16 +1,67 @@
-import { LightningElement } from 'lwc';
+import { LightningElement,track } from 'lwc';
 
 import righticon from '@salesforce/resourceUrl/rightIcon';
 import IMAGES from '@salesforce/resourceUrl/Images';
+import { CurrentPageReference } from 'lightning/navigation';
+import getArticle from '@salesforce/apex/YotiSupportSiteController.getArticleById';
+
+import getRelatedArticles from '@salesforce/apex/YotiSupportSiteController.getRelatedArticle';
 
 
 export default class FaqPage extends LightningElement {
 
-    faqBody = '<p> </p><p style="margin-top: 0pt;margin-bottom: 0pt;"><span style="font-size: 10pt;font-family: Verdana, sans-serif;color: #333333;background-color: #ffffff;">On the last step of sending out an envelope you can select the frequency of the reminders being sent out (everyday, every 2 days, every 7 days, or no reminders ).</span></p><p style="margin-top: 0pt;margin-bottom: 0pt;"><span style="font-size: 10pt;font-family: Verdana, sans-serif;color: #333333;background-color: #ffffff;">A max of 3 emails will be sent. The reminders will go out to recipients in the next singing group that have not signed, as long as the recipient has not completed it. If a signer has completed they will not receive any reminder emails left to go out.</span></p><p> </p><p style="margin-top: 0pt;margin-bottom: 0pt;"><img src="https://yoti--developer3.sandbox.file.force.com/servlet/rtaImage?eid=ka0Pt0000009Byj&amp;feoid=00N4L0000076dSK&amp;refid=0EMPt000000JLiH" alt="rta"></img></p><p> </p><p style="margin-top: 0pt;margin-bottom: 0pt;"><span style="font-size: 10pt;font-family: Verdana, sans-serif;color: #333333;background-color: #ffffff;">Please note that reminders are only sent to the signee(s) and not to witnesses.</span></p>'
+    faqBody = ''
     rightIconT =  righticon;
     businessSupport = IMAGES + '/businessSupport.png';
 
+    type = ''
+    product = ''
+    articleId = ''
+    category = ''
+    formattedDate = ''
+    @track relatedData = []
 
+    async connectedCallback(){
+        let url = new URL(window.location.href);
+        console.log('url: ' , JSON.stringify(url));
+        this.type = url.searchParams.get('type');
+        this.product = url.searchParams.get('product');
+        this.articleId = url.searchParams.get('articleId');
+        this.category = url.searchParams.get('category');
+        console.log('type: 22' , this.type,this.product,this.articleId,this.category);
+        
+        await getArticle({id: this.articleId})
+        .then(result => {
+            console.log('result111: ' , result);
+            if(result.length > 0){
+                this.faqBody = result[0].Answer__c
+                this.articleData = result[0]
+                const dateString = result[0].LastPublishedDate;
+                const date = new Date(dateString);
+                const day = String(date.getUTCDate()).padStart(2, '0'); // Ensure 2 digits (e.g., 05 instead of 5)
+                const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Month is 0-based, so add 1
+                const year = date.getUTCFullYear();
+                this.formattedDate = `${day}/${month}/${year}`;
+            }
+            
+        })
+        .catch(error => {
+            console.log('error: ' , error);});
+
+        await getRelatedArticles({subCategory: this.category})
+            .then(result => {
+                console.log('result111: ' , result);
+                if(result.length > 0){
+                    this.relatedData = JSON.parse(JSON.stringify(result));
+                    console.log(`this.relatedData: ` ,JSON.stringify(this.relatedData));
+                }
+                
+            })
+            .catch(error => {
+                console.log('error: ' , error);});    
+    }
+
+    
     renderedCallback() {
         console.log('renderedCallback');
         const richTextContainer = this.template.querySelector('.flexcontainer');
@@ -25,5 +76,38 @@ export default class FaqPage extends LightningElement {
                 span.style.color = '#546072';    // Inherit font size from outer container
             });
         }
+
+        const richTextContainerTemp = this.template.querySelector('.title');
+        if (richTextContainer && this.articleData) {
+            // Insert the rich text data as innerHTML
+            richTextContainerTemp.innerHTML = this.articleData.Question__c;
+        }   
+    }
+
+    handleClick(event){
+        console.log('event: ' , event.target.dataset.id);
+        const articleId = event.target.dataset.id;
+        if(articleId && this.category && this.type && this.product){    
+            console.log('articleId: ' , articleId);
+            console.log('category: ' , this.category);
+            window.location.href = '/yotiSupportSite/article-detail?type='+this.type+'&product='+this.product+'&articleId='+articleId+'&category='+this.category;    
+        }
+    }
+
+    handleType(){
+        if(this.type == 'Individuals'){
+             window.location.href = '/yotiSupportSite/individuals-page'
+       }else{
+            window.location.href = '/yotiSupportSite/businesses-page'
+       }
+    }
+
+    handleProduct(){
+        console.log('this.product: ***' , this.product);
+       if(this.type == 'Individuals'){
+             window.location.href = '/yotiSupportSite/category?type=Individuals&product='+this.product
+       }else{
+            window.location.href = '/yotiSupportSite/category?type=Businesses&product='+this.product
+       }
     }
 }

@@ -2,16 +2,16 @@
 
     <div class="div-wrapper">
         <div class="div">
-          <div class="page-link-label">Businesses</div>
+          <div class="page-link-label" onclick={handleType}>{type}</div>
           <img class="solid-chevron" src={rightIconT} />
-          <div class="page-link-label">eSignatures</div>
+          <div class="page-link-label" onclick={handleProduct} >{product}</div>
           <img class="solid-chevron" src={rightIconT} />
-          <div class="text-wrapper">Sending a document</div>
+          <div class="text-wrapper">{category}</div>
         </div>
         <div class="div-2">
           <div class="div-3">
             <div class="div-4">
-              <div class="title">How do reminders work?</div>
+              <div class="title"></div>
               <div class="flexcontainer">
                 
               </div>
@@ -19,30 +19,20 @@
             <div class="div-5">
               <div class="chip">
                 
-                <div class="text"><img class="icon" src={businessSupport} alt="Business Icon"/> Businesses</div>
+                <div class="text"><img class="icon" src={businessSupport} alt="Business Icon"/> {type}</div>
               </div>
-              <div class="chip"><div class="text">eSignatures</div></div>
-              <div class="chip"><div class="text">Updated on 17/01/2024</div></div>
+              <div class="chip"><div class="text">{product}</div></div>
+              <div class="chip"><div class="text">Updated on {formattedDate}</div></div>
             </div>
           </div>
           <div class="div-6">
             <div class="div-7">
               <div class="text-wrapper-2">Related articles</div>
-              <p class="text-wrapper-3">How do I use a signing order with auto tags?</p>
-              <p class="text-wrapper-3">Structure of an Auto tag</p>
-              <p class="text-wrapper-3">Can I use templates with Auto-tagged documents?</p>
-              <p class="text-wrapper-3">What is the header tag?</p>
-              <p class="text-wrapper-3">When to use Auto tags?</p>
-              <p class="text-wrapper-3">How do auto tags work?</p>
+              <template for:each={relatedData} for:item="item1">
+                <p onclick={handleClick} key={item1.Id} data-id={item1.Id} class="text-wrapper-3">{item1.Title}</p>
+              </template>  
+             
             </div>
-            <div class="div-7">
-              <div class="text-wrapper-2">Trending articles</div>
-              <p class="text-wrapper-3">How do I scan my passport?</p>
-              <p class="text-wrapper-3">How do I know if my passport has a biometric chip?</p>
-              <p class="text-wrapper-3">What ID documents do you currently support?</p>
-              <p class="text-wrapper-3">Can I add my postal address to my Yoti?</p>
-            </div>
-            <button class="button"><div class="text-2">Contact support team</div></button>
           </div>
         </div>
       </div>

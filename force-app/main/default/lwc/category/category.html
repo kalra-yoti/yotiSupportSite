@@ -11,16 +11,20 @@
       </div>
       <div class="div-9">
         <div class="div-10">
-          <template  for:each={topicList} for:item="item">
+          <template for:each={topicList} for:item="item">
             <div key={item.id} id={item.id} data-id={item.dataId} class="topic-section">
-              <div class="text-wrapper-5"><p class={item.dataId}>{item.name}</p></div>
-              <div class="div-8">
-                <template for:each={titleLink} for:item="item1">
-                  <li class="article-text-link" key={item1.id}><p class="article-title">{item1.name}</p></li>
-                </template>
-              </div>
+                <div class="text-wrapper-5">
+                    <p class={item.dataId}>{item.name}</p>
+                </div>
+                <div class="div-8">
+                    <template for:each={item.titleLink} for:item="item1">
+                        <li  class="article-text-link" key={item1.id}>
+                            <p onclick={handleArticle} id={item1.id} data-id={item.name} class="article-title">{item1.name}</p>
+                        </li>
+                    </template>
+                </div>
             </div>
-          </template>
+        </template>
         </div>
       </div>
     </div>

@@ -33,6 +33,7 @@
 
   .page-link-label{
     color: #27619B;
+    cursor: pointer;
   }
 
 
@@ -119,6 +120,11 @@
     color: #333b40;
     white-space: nowrap;
     font-style: normal;
+    cursor:pointer;
+  }
+
+  .div-wrapper .text-wrapper-3:hover {
+    text-decoration: underline;
   }
 
   .div-wrapper .div-7 {

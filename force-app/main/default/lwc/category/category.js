@@ -4,45 +4,18 @@ import { CurrentPageReference } from 'lightning/navigation';
 
 export default class Category extends LightningElement {
 
-    topicLink = [
-        { 'id': 'topic1', 'name': 'Topic 1' },
-        { 'id': 'topic2', 'name': 'Topic 2' },
-        { 'id': 'topic3', 'name': 'Topic 3' },
-        { 'id': 'topic4', 'name': 'Topic 4' }
-    ];
+    topicLink = [];
     
-    titleLink = [
-        { 'id': 1, 'name': 'This is the title of an article 1' },
-        { 'id': 2, 'name': 'This is the title of an article 2' },
-        { 'id': 3, 'name': 'This is the title of an article 3' },
-        { 'id': 4, 'name': 'This is the title of an article 4' }
-    ];
+    titleLink = [];
     
-    topicList = [
-        { 'id': 'topic11', 'name': 'Topic 1','dataId':'topic111' },
-        { 'id': 'topic22', 'name': 'Topic 2','dataId':'topic222' },
-        { 'id': 'topic33', 'name': 'Topic 3','dataId':'topic333' },
-        { 'id': 'topic44', 'name': 'Topic 4','dataId':'topic444' }
-    ];
+    topicList = [];
 
 
    type = ''
    product = ''
    isBusiness = ''
 
- /*@wire(CurrentPageReference)
-    getStateParameters(currentPageReference) {
-       if (currentPageReference) {
-            this.type = currentPageReference.state?.type;
-             this.product = currentPageReference.state?.product;
-
-
-        
-        console.log('isBusiness', this.isBusiness);
-       }
-    }*/
-
-
+ 
   async connectedCallback(){
 
 
@@ -60,13 +33,29 @@ export default class Category extends LightningElement {
     }
 
     await this.getKArticle(this.type,this.product);
+    //this.transformData();
     console.log('type: ' , this.type);
     console.log('product: ' , this.product);  
 
    }
 
+   transformData(inputData) {
     
-  async getKArticle(type,product){
+    console.log('inputData: ' , JSON.stringify(inputData));
+    // Transform the data to display all keys and their values
+    this.topicList = Object.keys(inputData).map((key, index) => ({
+        id: 'topic'+index+''+index,
+        dataId: 'topic'+index+''+index+''+index,
+        name: key,
+        titleLink: inputData[key].map((value, valueIndex) => ({
+            id: value.id,
+            name: value.title
+        }))
+    }));
+}
+
+    
+    getKArticle(type,product){
         getArticle({type:type,product:product})
         .then(result => {
             console.log('result: ' , JSON.stringify(result));
@@ -78,21 +67,31 @@ export default class Category extends LightningElement {
 
             result.forEach(element => {
                 console.log('element: ' , JSON.stringify(element));
-                if(!topicLinkList.includes(element.Sub_Category__c))
+                if(!topicLinkList.includes(element.Sub_Category__c)){
                     topicLinkList.push(element.Sub_Category__c);
+                }
+                
+                if(!titleLinkObject.hasOwnProperty(element.Sub_Category__c)){
+                    titleLinkObject[element.Sub_Category__c] = [{'title':element.Title,'id':element.Id}];
+                }else{
+                    let temp = titleLinkObject[element.Sub_Category__c]
+                    temp.push({'title':element.Title,'id':element.Id});
+                    titleLinkObject[element.Sub_Category__c] = temp
+                }
 
-                this.titleLink.push({'id':element.Id,'name':element.Title});
+            //    this.titleLink.push({'id':element.Id,'name':element.Title});
             });
 
-            this.topicList = [];
+           // this.topicList = [];
             this.topicLink = [];
             console.log('topicLinkList: ' , JSON.stringify(topicLinkList));
             for(let i=0;i<topicLinkList.length;i++){
-                this.topicList.push({'id':'topic'+i+''+i,'name':topicLinkList[i],'dataId':''+i+''+i+''+i});
+             //   this.topicList.push({'id':'topic'+i+''+i,'name':topicLinkList[i],'dataId':''+i+''+i+''+i});
                 this.topicLink.push({'id':'topic'+i,'name':topicLinkList[i]});
             }
             console.log('topicList: ' , JSON.stringify(this.topicList));
             console.log('topicLink: ' , JSON.stringify(this.topicLink));
+            this.transformData(titleLinkObject);
         })
         .catch(error => {
             console.log('error: ' , JSON.stringify(error))
@@ -113,6 +112,20 @@ export default class Category extends LightningElement {
         console.log('targetSection: ' , JSON.stringify(targetSection),topicId);
         targetSection.scrollIntoView({ behavior: 'smooth' });
        
+    }
+
+    handleArticle(event){
+        console.log('event: ' , event.target.id);
+
+        let articleId = event.target.id.split('-')[0]
+        let category = event.currentTarget.dataset.id;
+        console.log('articleId: ' , articleId);
+            console.log('category: ' , category);
+        if(articleId && category){
+            console.log('articleId: ' , articleId);
+            console.log('category: ' , category);
+            window.location.href = '/yotiSupportSite/article-detail?type='+this.type+'&product='+this.product+'&articleId='+articleId+'&category='+category;    
+        }
     }
            
 }
