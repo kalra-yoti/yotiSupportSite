@@ -4,6 +4,7 @@ import righticon from '@salesforce/resourceUrl/rightIcon';
 import IMAGES from '@salesforce/resourceUrl/Images';
 import { CurrentPageReference } from 'lightning/navigation';
 import getArticle from '@salesforce/apex/YotiSupportSiteController.getArticleById';
+import updateViews from '@salesforce/apex/YotiSupportSiteViewHandler.updateViews';
 
 import getRelatedArticles from '@salesforce/apex/YotiSupportSiteController.getRelatedArticle';
 
@@ -30,6 +31,8 @@ export default class FaqPage extends LightningElement {
         this.category = url.searchParams.get('category');
         console.log('type: 22' , this.type,this.product,this.articleId,this.category);
         
+        
+
         await getArticle({id: this.articleId})
         .then(result => {
             console.log('result111: ' , result);
@@ -37,16 +40,33 @@ export default class FaqPage extends LightningElement {
                 this.faqBody = result[0].Answer__c
                 this.articleData = result[0]
                 const dateString = result[0].LastPublishedDate;
+                console.log('count1   : ');
+                const countID = result[0].KnowledgeArticleId;
                 const date = new Date(dateString);
                 const day = String(date.getUTCDate()).padStart(2, '0'); // Ensure 2 digits (e.g., 05 instead of 5)
                 const month = String(date.getUTCMonth() + 1).padStart(2, '0'); // Month is 0-based, so add 1
                 const year = date.getUTCFullYear();
                 this.formattedDate = `${day}/${month}/${year}`;
+                console.log('count : ' , countId);
+                if((this.articleId != null && this.articleId != undefined && this.articleId != '') && (countID != null && countID!= undefined && countID != '')){
+                    let value = sessionStorage.getItem(this.articleId);
+                    console.log('value: ' , value);
+                    if(!value){
+                        sessionStorage.setItem(this.articleId,this.articleId)
+                        updateViews({id: countID})
+                        .then(result => {
+                            console.log('Updated Count: ');
+                                                    })
+                        .catch(error => {
+                            console.log('error updateViews: ' , error);});
+                    }
+                  }
+                
             }
             
         })
         .catch(error => {
-            console.log('error: ' , error);});
+            console.log('error:getArticle ' , error);});
 
         await getRelatedArticles({subCategory: this.category})
             .then(result => {
@@ -58,7 +78,7 @@ export default class FaqPage extends LightningElement {
                 
             })
             .catch(error => {
-                console.log('error: ' , error);});    
+                console.log('error: getRelatedArticles ' , error);});    
     }
 
     
@@ -73,7 +93,7 @@ export default class FaqPage extends LightningElement {
             spans.forEach(span => {
                 span.style.fontFamily = 'inherit';  // Inherit font family from outer container
                 span.style.fontSize = '18px';
-                span.style.color = '#546072';    // Inherit font size from outer container
+                span.style.color = '#546072 !important';    // Inherit font size from outer container
             });
         }
 

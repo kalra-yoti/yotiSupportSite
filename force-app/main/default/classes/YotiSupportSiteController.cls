@@ -10,7 +10,7 @@ global with sharing class YotiSupportSiteController {
     
             try {
                 List<Knowledge__kav> articles = [
-                    SELECT Id, Title, ArticleNumber, UrlName, PublishStatus,Sub_Category__c, Question__c,Answer__c
+                    SELECT Id, Title, ArticleNumber, UrlName, Lastpublisheddate,PublishStatus,Sub_Category__c,Topic__c,Sub_Topic__c, Question__c,Answer__c
                     FROM Knowledge__kav
                     WHERE Title LIKE :searchPattern
                     AND PublishStatus = 'Online'
@@ -34,7 +34,7 @@ global with sharing class YotiSupportSiteController {
            System.debug('type'+type+'>>>'+product);
             try {
                 List<Knowledge__kav> articles = [
-                    SELECT Id, Title, ArticleNumber, UrlName, PublishStatus,Sub_Category__c, Question__c,Answer__c
+                    SELECT Id, Title, ArticleNumber, UrlName, PublishStatus,Sub_Category__c
                     FROM Knowledge__kav
                     WHERE Topic__c like :type 
                     AND Sub_Topic__c =:product
@@ -48,94 +48,106 @@ global with sharing class YotiSupportSiteController {
             }
         }
 
-    //     @AuraEnabled
-    //     global static List<FAQWrapper> getKnowledgeArticles() {
+        @AuraEnabled
+        global static List<Knowledge__kav> getArticleById(String id) {
+            if (String.isEmpty(id)) {
+                return new List<Knowledge__kav>();
+            }
+          
+    
+           System.debug('id'+id);
+            try {
+                List<Knowledge__kav> articles = [
+                    SELECT Id, Title, Lastpublisheddate,knowledgeArticleId, PublishStatus,Sub_Category__c, Question__c,Answer__c
+                    FROM Knowledge__kav
+                    WHERE Id = :id
+                    AND PublishStatus = 'Online'
+                    AND Language = 'en_US'
+                ];
+                return articles;
+            } catch (Exception e) {
+                System.debug('Error fetching Knowledge Articles: ' + e.getMessage());
+                return new List<Knowledge__kav>();
+            }
+
+        }
         
-    //     List<FAQWrapper> faqWrappers = new List<FAQWrapper>();
-
-    //     // Query to get knowledge articles along with LastModifiedDate
-    //     List<Knowledge__kav> knowledgeArticles = [
-    //         SELECT Id, Title, Summary, Answer__c, LastModifiedDate 
-    //         FROM Knowledge__kav 
-    //         WHERE PublishStatus = 'Online' AND Language = 'en_US'
-    //     ];
-
-    //     // Get topic assignments for the knowledge articles
-    //     Map<Id, List<String>> articleTopicsMap = new Map<Id, List<String>>();
         
-    //     List<TopicAssignment> topicAssignments = [
-    //         SELECT EntityId, Topic.Name 
-    //         FROM TopicAssignment 
-    //         WHERE EntityId IN :knowledgeArticles 
-    //     ];
+        private static List<Knowledge__kav> getRandomKnowledgeRecords(List<Knowledge__kav> knowledgeList) {
+            if (knowledgeList == null || knowledgeList.isEmpty()) {
+                return new List<Knowledge__kav>(); // Return an empty list if input is null/empty
+            }
+    
+            Integer listSize = knowledgeList.size();
+            
+            if (listSize <= 6) {
+                return knowledgeList; // If 6 or fewer records exist, return them all
+            }
+    
+            // Shuffle the list using Fisher-Yates algorithm
+            Integer currentIndex = listSize;
+            Integer randomIndex;
+            Knowledge__kav tempRecord;
+    
+            while (currentIndex > 1) {
+                randomIndex = Math.floor(Math.random() * currentIndex).intValue();
+                currentIndex--;
+    
+                // Swap elements
+                tempRecord = knowledgeList[currentIndex];
+                knowledgeList[currentIndex] = knowledgeList[randomIndex];
+                knowledgeList[randomIndex] = tempRecord;
+            }
+    
+            // Extract the first 6 shuffled records manually
+            List<Knowledge__kav> random6Records = new List<Knowledge__kav>();
+            for (Integer i = 0; i < 6; i++) {
+                random6Records.add(knowledgeList[i]);
+            }
+    
+            return random6Records;
+        }
+    
 
-    //     // Group topics by knowledge article
-    //     for (TopicAssignment ta : topicAssignments) {
-    //         if (!articleTopicsMap.containsKey(ta.EntityId)) {
-    //             articleTopicsMap.put(ta.EntityId, new List<String>());
-    //         }
-    //         articleTopicsMap.get(ta.EntityId).add(ta.Topic.Name);
-    //     }
+        @AuraEnabled
+        global static List<Knowledge__kav> getRelatedArticle(String subCategory) {
+            if (String.isEmpty(subCategory)) {
+                return new List<Knowledge__kav>();
+            }
+          
+    
+           System.debug('subCategory '+subCategory);
+            try {
+                List<Knowledge__kav> articles = [
+                    SELECT Id, Title, PublishStatus,Sub_Category__c
+                    FROM Knowledge__kav
+                    WHERE Sub_Category__c = :subCategory
+                    AND PublishStatus = 'Online'
+                    AND Language = 'en_US' limit 100
+                ];
+                return getRandomKnowledgeRecords(articles);
+                
+            } catch (Exception e) {
+                System.debug('Error fetching Knowledge Articles: ' + e.getMessage());
+                return new List<Knowledge__kav>();
+            }
 
-    //     // Process knowledge articles
-    //     for (Knowledge__kav article : knowledgeArticles) {
-    //         String category = 'Uncategorized';
-    //         String solution = 'None';
-    //         List<String> topics = articleTopicsMap.get(article.Id);
+        }
 
-    //         if (topics != null && !topics.isEmpty()) {
-    //             if (topics.size() == 1) {
-    //                 category = topics[0];
-    //             } else {
-    //                 // Identify Business/Individual category and solution
-    //                 for (String topic : topics) {
-    //                     if (topic == 'For Business' || topic == 'For Individual') {
-    //                         category = topic;
-    //                     } else {
-    //                         solution = topic;
-    //                     }
-    //                 }
-    //             }
-    //         }
-
-    //         // Add to wrapper list
-    //         faqWrappers.add(new FAQWrapper(
-    //             article.Id,
-    //             article.Title,
-    //             article.Summary,
-    //             category,
-    //             solution,
-    //             article.LastModifiedDate // Assign LastModifiedDate
-    //         ));
-    //     }
-
-    //     return faqWrappers;
-    // }
-
-
-    //     global class FAQWrapper {
-    //         // Define properties for the wrapper class
-    //         @AuraEnabled
-    //         global String id;
-    //         @AuraEnabled
-    //         global String title;
-    //         @AuraEnabled
-    //         global String description;
-    //         @AuraEnabled
-    //         global String category;
-    //         @AuraEnabled
-    //         global String solution;
-    //         @AuraEnabled
-    //         global DateTime dateF;
-        
-    //         // Constructor for the wrapper class
-    //         global FAQWrapper(String id,String title,String description,String category,String solution,DateTime dateF) {
-    //             this.id = id;
-    //             this.title = title;
-    //             this.description = description;
-    //             this.category = category;
-    //             this.solution = solution;
-    //             this.dateF = dateF;
-    //         }
-    //     }
-    }
+        @AuraEnabled(cacheable=true)
+        public static List<Knowledge__kav> getTopFAQItems(String topic) {
+            if(topic=='Business'){
+                topic='For Businesses';
+            }else if(topic=='Individual'){
+                topic='For Individuals';
+            }
+            return [
+                SELECT Id,Title,Question__c,Topic__c,Sub_Topic__c,Sub_Category__c
+                FROM Knowledge__kav
+                WHERE PublishStatus = 'Online' AND Language = 'en_US'
+                AND Topic__c = :topic
+                ORDER BY View_Count_for_LWR__c DESC
+                LIMIT 5
+            ];
+        }
+}
