@@ -15,6 +15,7 @@ global with sharing class YotiSupportSiteController {
                     WHERE Title LIKE :searchPattern
                     AND PublishStatus = 'Online'
                     AND Language = 'en_US'
+                    WITH DATA CATEGORY YOTI_FAQs__c AT (ALL__c)
                 ];
                 return articles;
             } catch (Exception e) {
@@ -40,6 +41,7 @@ global with sharing class YotiSupportSiteController {
                     AND Sub_Topic__c =:product
                     AND PublishStatus = 'Online'
                     AND Language = 'en_US'
+                    WITH DATA CATEGORY YOTI_FAQs__c AT (ALL__c)
                 ];
                 return articles;
             } catch (Exception e) {

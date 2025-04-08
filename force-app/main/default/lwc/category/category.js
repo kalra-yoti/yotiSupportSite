@@ -11,8 +11,8 @@ export default class Category extends LightningElement {
     topicList = [];
 
 
-   type = ''
-   product = ''
+   type = null
+   product = null
    isBusiness = ''
 
  
@@ -24,6 +24,10 @@ export default class Category extends LightningElement {
     console.log('url: ' , JSON.stringify(url));
      this.type = url.searchParams.get('type');
      this.product = url.searchParams.get('product');
+
+     if(this.type == null || this.type == undefined || this.type == '' || this.product == null || this.product == undefined || this.product == ''){
+        window.location.href = '/yotiSupportSite/error-page';
+     }   
 
      console.log('type: ' , this.type,this.product);
     if(this.type == 'Business'){
