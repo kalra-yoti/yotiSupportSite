@@ -1,0 +1,18 @@
+<template>
+    <template if:false={isMobileNavigation}>
+    <div class="footer-container">
+        <div class="navbar">
+            <template for:each={navLinks} for:item="link">
+                <a target="_blank" href={link.url} key={link.id} class="text-wrapper">{link.label}</a>
+            </template>
+        </div>
+        <div class="socialMediaLogos">
+        <a target="_blank" href="https://www.facebook.com/getYoti/"><img class="facebook" src={facebook} alt="Company Logo" /></a>
+        <a target="_blank" href="https://x.com/getyoti/"><img class="twitter" src={twitter} alt="Company Logo" /></a>
+        <a target="_blank" href="https://www.instagram.com/getyoti/"><img class="instagram" src={instagram} alt="Company Logo" /></a>
+        <a target="_blank" href="https://www.linkedin.com/company/yoti-digital-identity"><img class="linkedin" src={linkedin} alt="Company Logo" /></a>
+        <a target="_blank" href="https://www.youtube.com/channel/UCFM8ECMDGFhamlczBagtGuw"><img class="youtube" src={youtube} alt="Company Logo" /></a>
+        </div>
+    </div>
+</template>
+</template>

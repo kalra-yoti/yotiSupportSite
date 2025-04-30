@@ -1,0 +1,192 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
+}
+
+.container{
+    display: flex;
+    width:100%;
+    justify-content: center;
+    padding: 56px 24px;
+    font-family: 'CustomFont', GT-Eesti-Display-Regular;
+  }
+
+.search-results-container {
+    max-width: 936px;
+    width: 100%; 
+}
+
+.results-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: #333B40;
+}
+
+.refine-search {
+     margin-bottom: 16px; 
+}
+
+.refine-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    color: #333B40;
+    /* margin-bottom: 3px; */
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 40px;
+    font-family: 'CustomFont', GT-Eesti-Display-Regular ;
+}
+
+/* Style the dropdown container */
+.custom-dropdown {
+    position: relative;
+    width: 324px; /* Adjust width */
+}
+
+/* Style the select box */
+.wide-combobox {
+    width: 100%;
+    font-family: 'CustomFont', GT-Eesti-Display-Regular ;
+    font-size: 16px;
+    color: #333B40;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    appearance: none; /* Remove default arrow */
+    padding: 5px 16px;
+    height: 60px;
+}
+
+
+
+/* Style dropdown options */
+.wide-combobox option {
+    font-family: 'CustomFont', GT-Eesti-Display-Regular ;
+    font-size: 16px;
+}
+
+.shrink {
+    top: 3px; /* Move label up */
+    font-size: 12px; /* Shrink label */
+    color: #546072; /* Change color when shrunk */
+}
+
+label {
+    position: absolute;
+    left: 16px;
+    top: 18px;
+    transition: all 0.2s ease;
+    pointer-events: none; /* Prevent label from capturing clicks */
+    color: #546072;
+}
+
+
+.faq-card {
+    border-top: 1px solid #ccc;
+    padding: 24px 0;
+}
+
+.faq-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #27619B;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.faq-title:hover {
+    text-decoration: underline;
+  }
+
+.faq-description {
+    font-size: 16px;
+    font-weight: 400;
+    color: #546072;
+    margin: 8px 0;
+}
+
+.faq-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    background: #F2F4F6;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 400px;
+    color: #546072;
+}
+
+.tagFirst {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* Adjusts spacing, 1rem = 16px (4x default spacing) */
+    background: #F2F4F6;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 400px;
+    color: #546072;
+}
+
+.faq-icon {
+    width: 16px; /* Adjust size if needed */
+    height: 16px;
+}
+
+.zero-results{
+    border-radius: 4px;
+    background-color: #FFEBCA;
+    display: flex;
+    padding: 16px;
+    align-items: flex-start;
+    gap: 8px;
+    width: fit-content;;
+    
+}
+
+hr{
+    border: none;        /* Remove the default border */
+    height: 1px;        /* Set the height of the line */
+    background-color: #ccc; /* Set the color of the line */
+    margin: 24px 0; 
+}
+
+.zero-results img{
+    width: 22px;
+    height: 22px;
+}
+
+.zero-results p{
+    color: #634514;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    }
+
+
+@media (max-width: 768px) {
+        .filters {
+            flex-direction: column;
+            width: 100%;
+        }
+    
+        .custom-dropdown {
+            width: 100%;
+        }
+    
+        .faq-tags {
+            flex-wrap: wrap;
+        }
+}
+    

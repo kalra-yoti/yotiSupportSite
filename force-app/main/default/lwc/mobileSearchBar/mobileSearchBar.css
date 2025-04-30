@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
+}
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin-bottom: 32px;
+    box-sizing: border-box;
+    font-family: 'CustomFont', GT-Eesti-Display-Regular;
+    font-size: 24px;
+    font-weight: 700;
+    padding:24px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin-bottom: 16px;
+    background-color: #fff;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px 8px;
+    color: #546072;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.search-button {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0.075px;
+    border: none;
+    border-radius: 8px;
+    background-color: #165080;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #165080;
+}
+

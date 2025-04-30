@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
+}
+
+.container {
+    text-align: center;
+    padding: 40px 24px;
+    font-family: 'CustomFont', GT-Eesti-Display-Regular ;
+}
+
+h1 {
+    margin: auto;
+    color:#333B40;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+p {
+    color: #546072;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 24px 0;
+}
+
+.btn {
+    width: 156px;
+    padding: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 1px solid #2875BC;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.075px;
+    display:inline-block;
+}
+
+a.btn{
+    text-decoration: none !important;
+    background:  #2875BC !important;
+    color: #FFF !important;
+}
+
+.image-container {
+    margin-top: 56px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

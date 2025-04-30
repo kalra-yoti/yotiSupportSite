@@ -1,0 +1,90 @@
+<template>
+<template if:false={isMobileNavigation}>
+    <div class="footer-container">
+        <div class="wrapper">
+        <div class="footer-top">
+            <div class="footer-content">
+                <div class="logo-section">
+                    <img class="yoti-logo" src={yotiLogo} alt="Yoti Logo" />
+                    <p>© Yoti Ltd. 2020 - 2023</p>
+                </div>
+                <div class="download-section">
+                    <p>Download Yoti ID</p>
+                    <div class="store-badges">
+                        <a href="https://app.adjust.com/jrsuux?engagement_type=fallback_click&redirect=https%3A%2F%2Fapps.apple.com%2Fgb%2Fapp%2Fyoti-your-digital-identity%2Fid983980808"><img src={appStore} alt="App Store" /></a>
+                        <a href="https://app.adjust.com/2qs1x6?engagement_type=fallback_click"><img src={googlePlay} alt="Google Play" /></a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="links-section">
+                    <p>For Businesses</p>
+                    <ul>
+                    <template for:each={businessProducts} for:item="product">
+                        <li key={product.name}>
+                            <a href={product.link} onclick={handleProductClick}>{product.name}</a>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+            <div class="links-section">
+                    <p>For Individuals</p>
+                    <ul>
+                        <template for:each={individualProducts} for:item="product">
+                            <li key={product.name}>
+                                <a href={product.link} onclick={handleProductClick}>{product.name}</a>
+                            </li>
+                        </template>
+                    </ul>
+            </div>
+            <div class="links-section">
+                    <p>Supporting Sites</p>
+                    <ul>
+                        <li><a href="https://www.yoti.com">Yoti.com <img src={externalLink} alt="Arrow Icon" class="arrow-icon"></a></li>
+                        <li><a href="/yotiSupportSite/error-page">Developers documentation <img src={externalLink} alt="Arrow Icon" class="arrow-icon"></a></li>
+                    </ul>
+            </div>
+        </div>
+        
+
+        <hr class="footer-divider" />
+
+        <div class="certifications-company-wrapper">
+            <div class="certifications">
+                <img src={bCorps} alt="B Corps" />
+                <img src={soc2} alt="SOC2" />
+                <img src={iso9001} alt="ISO 9001" />
+                <img src={iso27001} alt="ISO 27001" />
+                <img src={iso27701} alt="ISO 27701" />
+            </div>
+        
+            <div class="company-info">
+                <p>Yoti is a digital identity company that makes it safer for people to prove who they are. We started by empowering people with a free, reusable digital ID app that minimises the data they share with businesses. We now provide verification solutions across the globe, spanning identity verification, age verification, eSigning and authentication.</p>
+                <div class="locations">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="18" viewBox="0 0 15 18" fill="none">
+                        <g clip-path="url(#clip0_576_21461)">
+                        <path d="M12.1714 2.6756C10.8513 1.33396 9.09341 0.59375 7.21997 0.59375C5.34653 0.59375 3.58866 1.33396 2.2685 2.6756C-0.462871 5.4514 -0.462871 9.96742 2.2685 12.7397L7.21997 17.5938L12.1714 12.7397C13.4916 11.398 14.22 9.61154 14.22 7.70763C14.22 5.80371 13.4916 4.01724 12.1714 2.6756ZM11.6777 12.2379L7.21997 16.6044L2.76224 12.2379C0.311016 9.74322 0.304013 5.6756 2.76224 3.17738C3.94934 1.97097 5.53213 1.30549 7.21997 1.30549C8.90781 1.30549 10.4871 1.97097 11.6777 3.17738C14.1359 5.6756 14.1359 9.73966 11.6777 12.2379Z" fill="#333B40"/>
+                        <path d="M11.6776 3.17755C10.4906 1.97114 8.90776 1.30566 7.21992 1.30566C5.53207 1.30566 3.95278 1.97114 2.76219 3.17755C0.30396 5.67577 0.310963 9.74339 2.76219 12.238L7.21992 16.6046L11.6776 12.238C14.1359 9.73983 14.1359 5.67577 11.6776 3.17755ZM11.1909 11.7256L7.21992 15.6153L3.25243 11.7292C1.07084 9.50851 1.07435 5.89997 3.25594 3.68289C4.31346 2.60816 5.72117 2.01741 7.21642 2.01741C8.71166 2.01741 10.1229 2.60816 11.1769 3.68289C12.2309 4.75762 12.8157 6.18467 12.8157 7.7078C12.8157 9.23093 12.2344 10.6615 11.1874 11.7256H11.1909Z" fill="#333B40"/>
+                        <path d="M7.21997 3.79297C5.09441 3.79297 3.36804 5.54742 3.36804 7.70756C3.36804 9.8677 5.09441 11.6222 7.21997 11.6222C9.34553 11.6222 11.0719 9.8677 11.0719 7.70756C11.0719 5.54742 9.34553 3.79297 7.21997 3.79297ZM7.21997 10.9104C5.4831 10.9104 4.06839 9.47268 4.06839 7.70756C4.06839 5.94244 5.4831 4.50471 7.21997 4.50471C8.95684 4.50471 10.3715 5.94244 10.3715 7.70756C10.3715 9.47268 8.95684 10.9104 7.21997 10.9104Z" fill="#333B40"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0_576_21461">
+                        <rect width="14" height="17" fill="white" transform="translate(0.219971 0.59375)"/>
+                        </clipPath>
+                        </defs>
+                        </svg></span> 
+                    <span class="bold">UK</span> 
+                    <span>India</span> 
+                    <span>Australia</span> 
+                    <span>Canada</span> 
+                    <span>US</span> 
+                    <span>New Zealand</span>
+                </div>
+                <p class="address">Yoti Ltd, Sixth Floor, 107 Leadenhall Street, London, EC3A 4AF</p>
+                <p class="regNo">Company registration number: 08998951</p>
+            </div>
+        </div>
+        </div>
+    </div>
+</template>
+</template>

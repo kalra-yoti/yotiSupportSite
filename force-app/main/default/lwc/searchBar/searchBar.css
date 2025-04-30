@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'CustomFontRegular';
+    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
+}
+
+.search-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;          /* Spacing between input area and button */
+    font-family: 'CustomFontRegular', GT-Eesti-Display-Regular ;
+}
+
+/* Wrapper around the icon and input */
+.input-wrapper {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #d1d1d1;
+    border-radius: 4px;
+    padding: 12px 10px;
+    background-color: #ffffff;
+}
+
+/* The icon (e.g., <lightning-icon> or <svg>) */
+.input-wrapper lightning-icon,
+.input-wrapper svg {
+    margin-right: 0.5rem;
+}
+
+/* The text input */
+.search-input {
+    border: none;
+    outline: none;
+    color: #546072;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    width: 278px;  
+}
+
+/* The Search button */
+.search-button {
+    border: 2px solid #2875BC;
+    background-color: #ffffff;
+    color: #0070d2;
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.075px;
+    
+}
+
+.search-button:hover { /* Darken on hover */
+    color: #005fb2;
+}

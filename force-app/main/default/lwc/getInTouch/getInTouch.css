@@ -1,0 +1,507 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
+}
+
+.main-container{
+    display: grid;
+    justify-content: center;
+    width: 100%;
+    padding: 56px 24px;
+    font-family: 'CustomFont', GT-Eesti-Display-Regular ;
+    color: #333B40;
+}
+
+.success-container {
+    /* text-align: start; */
+    max-width: 936px;
+    width: 100%; 
+    display: ruby;
+
+}
+
+.success-container .heading{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 36px;
+    margin-bottom: 16px;
+}
+
+.success-container p{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.icon-wrapper {
+    margin-bottom: 40px;
+}
+
+.check-icon {
+    width: 120px;
+    height: 120px;
+}
+
+
+.container {
+    max-width: 936px;
+    width: 100%; 
+    display: ruby;
+}
+
+.form-heading{
+    display: grid;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.form-heading h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+.form-heading p {
+    font-size: 16px;;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.form-container{
+    width:420px
+}
+
+.contact-details{
+    display: grid;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.contact-details p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+}
+
+
+.form-group-floating {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+
+.form-group-floating input {
+    width: 100%;
+    display: flex;
+    min-height: 60px;
+    padding: 5px 16px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.floating {
+    position: absolute;
+    left: 18px;
+    top: 16px;
+    color: #333B40;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.floating.active {
+    top: 3px; 
+    left:18px;
+    font-size: 12px;
+    background: white;
+    color: #546072;
+}
+
+.input-error {
+    border: 2px solid #D5332E;
+}
+
+.input-valid{
+    border: 2px solid #9BA5B4;
+}
+
+.error-text{
+    color: #8A2821;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px; 
+}
+
+.error-icon {
+    color: #D5332E;
+    font-size: 16px;
+    pointer-events: none;
+}
+
+
+
+.radio-container{
+    display: grid;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.radio-container p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+}
+
+.form-group-radio{
+    display: flex;
+    gap: 16px;
+}
+
+.form-group-radio input{
+    width: 22px;
+    height: 22px;
+    border: 2px solid #333B40;
+    border-radius: 50%;
+    cursor: pointer;
+    appearance: none;
+    position: relative;
+}
+
+.form-group-radio input:checked::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    background-color: #1B9F4A;
+    border-radius: 50%;
+}
+
+.form-group-radio p{
+    align-content: center;
+    color: #333B40;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.user-container{
+    display: grid;
+    gap: 16px;
+    margin-bottom: 16px; 
+}
+
+.user-container p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+}
+
+
+/* Style the dropdown container */
+.custom-dropdown {
+    position: relative;
+}
+
+/* Style the select box */
+.wide-combobox {
+    width: 100%;
+    font-family: 'CustomFont', GT-Eesti-Display-Regular ;
+    font-size: 16px;
+    color: #333B40;
+    border-radius: 4px;
+    background-color: white;
+    appearance: none; /* Remove default arrow */
+    padding: 5px 16px;
+    height: 60px;
+}
+
+
+/* Style dropdown options */
+.wide-combobox option {
+    font-family: 'CustomFont', GT-Eesti-Display-Regular ;
+    font-size: 16px;
+}
+
+.shrink {
+    top: 3px; /* Move label up */
+    left:18px;
+    font-size: 12px; /* Shrink label */
+    color: #546072; /* Change color when shrunk */
+}
+
+label {
+    position: absolute;
+    left: 16px;
+    top: 18px;
+    transition: all 0.2s ease;
+    pointer-events: none; /* Prevent label from capturing clicks */
+    color: #546072;
+}
+
+.form-group-checkbox{
+    display: flex;
+    gap: 16px;
+}
+
+.form-group-checkbox input{
+    width: 22px;
+    height: 22px;
+    border: 2px solid #9BA5B4;
+    cursor: pointer;
+    /* appearance: none; */
+    position: relative;
+    border-radius: 20%;
+}
+
+/* .form-group-checkbox input:checked::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+} */
+
+.form-group-checkbox p{
+    align-content: center;
+    color: #333B40;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.helpful-article-container {
+    margin-bottom: 16px;
+    display: grid;
+    gap:8px;
+}
+
+.helpful-article-container p {
+    color: #333B40;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.helpful-article-container .article-box {
+    display: flex;
+    gap: 8px;
+    background-color: #E5EEFF;
+    padding: 16px;
+    border-radius: 4px;
+}
+
+
+.helpful-article-container .article-box p {
+    color: #254D78;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.helpful-article-container .custom-article-icon {
+    width: 22px;
+    height: 22px;
+}
+
+.link-article-container {
+    margin-bottom: 16px;
+    display: grid;
+    gap:8px;
+}
+
+.link-article-container .article-box {
+    display: flex;
+    /* align-items: center; */
+    gap: 8px;
+    background-color: #E5EEFF;
+    padding: 16px;
+    border-radius: 4px;
+}
+
+
+.link-article-container .article-box p {
+    color: #254D78;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.link-article-container .article-box .mainLink {
+    color: #254D78;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.link-article-container .custom-article-icon {
+    width: 22px;
+    height: 22px;
+}
+
+/* .form-group-textarea{
+    margin-bottom: 32px;
+
+} */
+
+/* .form-group-textarea textarea {
+    width: 100%;
+    height: 120px;
+    border-radius: 4px;
+    border: 2px solid #9BA5B4;
+    background: #FFF;
+    font-size: 14px;
+    resize: vertical;
+    box-sizing: border-box;
+    display: flex;
+    min-height: 40px;
+    padding: 5px 16px;
+    align-items: flex-start;
+    gap: 8px;
+} */
+
+.form-group-floating textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 16px;
+    border-radius: 4px;
+    border: 2px solid #9BA5B4;
+    background: #FFF;
+    font-size: 16px;
+    line-height: 24px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.form-group-floating textarea:focus + .floating,
+.form-group-floating textarea:not(:placeholder-shown) + .floating {
+    top: 3px;
+    left: 18px;
+    font-size: 12px;
+    background: white;
+    color: #546072;
+}
+
+
+
+
+.info-box {
+    background-color: #F2F4F6;
+    padding: 16px;
+    border-radius: 4px;
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    margin-top: 32px;
+}
+
+.info-box p {
+    color: #546072;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.info-box lightning-icon{
+    margin : 2px;
+}
+
+button{
+    display: flex;
+    padding: 16px;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid #2875BC ;
+    background: #2875BC;
+    color:#FFF;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.075px;
+}
+
+@media screen and (max-width: 768px) {
+    .success-container,
+    .container,
+    .form-container {
+        width: 100%;
+        margin: auto;
+    }
+
+    .success-container .heading,
+    .form-heading h1 {
+        font-size: 24px;
+        line-height: 28px;
+    }
+
+    .form-heading {
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+
+    .form-heading p,
+    .success-container p,
+    .contact-details p,
+    .radio-container p,
+    .form-group-radio p,
+    .user-container p,
+    .helpful-article-container p,
+    .helpful-article-container .article-box p,
+    .link-article-container .article-box p,
+    .link-article-container .article-box .mainLink,
+    .info-box p,
+    .form-group-checkbox p {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .icon-wrapper {
+        margin-bottom: 24px;
+    }
+
+    .check-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .form-group-floating input,
+    .wide-combobox{
+        padding: 4px 12px;
+    }
+
+    /* .form-group-floating textarea {
+        height: 100px;
+    } */
+
+    label,
+    .floating {
+        font-size: 14px;
+        top: 18px;
+    }
+
+    .floating.active,
+    .shrink {
+        top: 2px;
+        left: 14px;
+        font-size: 10px;
+    }
+
+
+    .info-box {
+        padding: 12px;
+    }
+
+    button {
+        width: 100%;
+        justify-content: center;
+        font-size: 14px;
+        padding: 12px;
+    }
+}
+

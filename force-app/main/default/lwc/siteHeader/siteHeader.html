@@ -1,0 +1,47 @@
+<template>
+    <div class="header-container">
+        <!-- Left side: Logo + Nav -->
+        <div class="left-section">
+            <div class="logo-wrapper">
+                <a onclick={handleNavClick} data-page="home" href="/"><img
+                    src={logoUrl}
+                    alt="Company Logo"
+                    class="logo"
+                /></a>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="nav-menu">
+                <a href="/" data-page="home" class={homeNavClass} onclick={handleNavClick}>Home</a>
+                <a href="/businesses-page?type=Business" data-page="business" class={businessNavClass} onclick={handleNavClick}>Businesses</a>
+                <a href="/individuals-page?type=Individual" data-page="individuals" class={individualsNavClass} onclick={handleNavClick}>Individuals</a>
+                <a href="/yotiSupportSite/get-in-touch" data-page="getInTouch" class={getInTouchNavClass} onclick={handleNavClick}>Get in touch</a>
+            </nav>
+        </div>
+
+        <!-- Right side: Search Section -->
+        <div class="mobile-right-section">
+            <!-- Search Icon for Mobile -->
+            <div class="search-icon" if:false={hamburgerSearchIcon} onclick={toggleSearch}>
+                🔍
+            </div>
+
+            <div class="search-bar">
+                <c-search-bar onsearch={handleSearch}></c-search-bar>
+            </div>
+
+            <!-- Hamburger Menu -->
+            <div class="hamburger-menu" if:false={hamburgerSearchIcon} onclick={toggleMenu}>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+
+            <img src={closeIcon} alt="Close" if:true={hamburgerSearchIcon} class="close-menu" onclick={closeMenu} />
+
+
+        </div>
+
+    </div>
+
+</template>

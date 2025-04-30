@@ -1,0 +1,250 @@
+global with sharing class YotiSupportSiteController {
+        @AuraEnabled(cacheable=true)
+        global static List<Knowledge__kav> searchKnowledgeArticles(String searchKeyword) {
+            // Ensure searchKeyword is not null to prevent SOQL errors
+            if (String.isEmpty(searchKeyword)) {
+                return new List<Knowledge__kav>();
+            }
+    
+            String searchPattern = '%' + searchKeyword + '%';
+    
+            try {
+                List<Knowledge__kav> articles = [
+                    SELECT Id, Title, ArticleNumber, UrlName, Lastpublisheddate,PublishStatus,Sub_Category__c,Topic__c,Sub_Topic__c, Question__c,Answer__c
+                    FROM Knowledge__kav
+                    WHERE Title LIKE :searchPattern
+                    AND PublishStatus = 'Online'
+                    AND Language = 'en_US'
+                    WITH DATA CATEGORY YOTI_FAQs__c AT (ALL__c)
+                ];
+                return articles;
+            } catch (Exception e) {
+                System.debug('Error fetching Knowledge Articles: ' + e.getMessage());
+                return new List<Knowledge__kav>();
+            }
+        }
+
+
+        @AuraEnabled(cacheable=true)
+        global static List<Knowledge__kav> getArticles(String type,String product) {
+            if (String.isEmpty(product) || String.isEmpty(type)) {
+                return new List<Knowledge__kav>();
+            }
+            type = '%' + type + '%';
+    
+           System.debug('type'+type+'>>>'+product);
+            try {
+                List<Knowledge__kav> articles = [
+                    SELECT Id, Title, ArticleNumber, UrlName, PublishStatus,Sub_Category__c
+                    FROM Knowledge__kav
+                    WHERE Topic__c like :type 
+                    AND Sub_Topic__c =:product
+                    AND PublishStatus = 'Online'
+                    AND Language = 'en_US'
+                    WITH DATA CATEGORY YOTI_FAQs__c AT (ALL__c)
+                ];
+                return articles;
+            } catch (Exception e) {
+                System.debug('Error fetching Knowledge Articles: ' + e.getMessage());
+                return new List<Knowledge__kav>();
+            }
+        }
+
+        @AuraEnabled
+        global static List<Knowledge__kav> getArticleById(String id) {
+            if (String.isEmpty(id)) {
+                return new List<Knowledge__kav>();
+            }
+          
+    
+           System.debug('id'+id);
+            try {
+                List<Knowledge__kav> articles = [
+                    SELECT Id, Title, Lastpublisheddate,knowledgeArticleId, PublishStatus,Sub_Category__c, Question__c,Answer__c
+                    FROM Knowledge__kav
+                    WHERE Id = :id
+                    AND PublishStatus = 'Online'
+                    AND Language = 'en_US'
+                ];
+                return articles;
+            } catch (Exception e) {
+                System.debug('Error fetching Knowledge Articles: ' + e.getMessage());
+                return new List<Knowledge__kav>();
+            }
+
+        }
+        
+        
+        private static List<Knowledge__kav> getRandomKnowledgeRecords(List<Knowledge__kav> knowledgeList) {
+            if (knowledgeList == null || knowledgeList.isEmpty()) {
+                return new List<Knowledge__kav>(); // Return an empty list if input is null/empty
+            }
+    
+            Integer listSize = knowledgeList.size();
+            
+            if (listSize <= 6) {
+                return knowledgeList; // If 6 or fewer records exist, return them all
+            }
+    
+            // Shuffle the list using Fisher-Yates algorithm
+            Integer currentIndex = listSize;
+            Integer randomIndex;
+            Knowledge__kav tempRecord;
+    
+            while (currentIndex > 1) {
+                randomIndex = Math.floor(Math.random() * currentIndex).intValue();
+                currentIndex--;
+    
+                // Swap elements
+                tempRecord = knowledgeList[currentIndex];
+                knowledgeList[currentIndex] = knowledgeList[randomIndex];
+                knowledgeList[randomIndex] = tempRecord;
+            }
+    
+            // Extract the first 6 shuffled records manually
+            List<Knowledge__kav> random6Records = new List<Knowledge__kav>();
+            for (Integer i = 0; i < 6; i++) {
+                random6Records.add(knowledgeList[i]);
+            }
+    
+            return random6Records;
+        }
+    
+
+        @AuraEnabled
+        global static List<Knowledge__kav> getRelatedArticle(String subCategory,String product) {
+            if (String.isEmpty(subCategory)) {
+                return new List<Knowledge__kav>();
+            }
+          
+    
+           System.debug('subCategory '+subCategory);
+            try {
+                List<Knowledge__kav> articles = [
+                    SELECT Id, Title, PublishStatus,Sub_Category__c,View_Count_for_LWR__c
+                    FROM Knowledge__kav
+                    WHERE Sub_Category__c = :subCategory
+                    AND PublishStatus = 'Online'
+                    AND Language = 'en_US'
+                    AND View_Count_for_LWR__c != null
+                    order by View_Count_for_LWR__c DESC limit 5
+                ];
+
+                if(articles.size() < 5){
+                    List<Knowledge__kav> articlesTemp = [
+                        SELECT Id, Title, PublishStatus,Sub_Category__c,View_Count_for_LWR__c
+                        FROM Knowledge__kav
+                        WHERE Sub_Category__c != :subCategory
+                        AND Sub_Topic__c = :product
+                        AND PublishStatus = 'Online'
+                        AND Language = 'en_US'
+                        AND View_Count_for_LWR__c != null
+                        order by View_Count_for_LWR__c DESC limit 5
+                    ];
+
+                   Integer size = 5 - articles.size();
+                    if(size > articlesTemp.size()){
+                        size = articlesTemp.size();
+                    }
+                    for(Integer i=0;i<size;i++){
+                        articles.add(articlesTemp[i]);
+                    } 
+                }
+               
+                return articles;
+                
+            } catch (Exception e) {
+                System.debug('Error fetching Knowledge Articles: ' + e.getMessage());
+                return new List<Knowledge__kav>();
+            }
+
+        }
+
+        @AuraEnabled(cacheable=true)
+        public static List<Knowledge__kav> getTopFAQItems(String topic) {
+            if(topic=='Business'){
+                topic='For Businesses';
+            }else if(topic=='Individual'){
+                topic='For Individuals';
+            }
+            return [
+                SELECT Id,Title,Question__c,Topic__c,Sub_Topic__c,Sub_Category__c
+                FROM Knowledge__kav
+                WHERE PublishStatus = 'Online' AND Language = 'en_US'
+                AND Topic__c = :topic
+                ORDER BY View_Count_for_LWR__c DESC
+                LIMIT 5
+            ];
+        }
+
+        @AuraEnabled
+        public static String createCaseFromGetInTouchForm(
+            String isBusiness,
+            String descriptionText,
+            String companyName,
+            String webEmail,
+            String language,
+            String loginIssue,
+            String name,
+            String productLabel,
+            String queryTypeBusiness,
+            String queryTypeIndividual,
+            String valueOfTopic,
+            Boolean isFAQUseful,
+            String faqUseful,
+            String sessionQuery,
+            String sessionID,
+            String invoiceAndBilling,
+            String receiptID
+        ) {
+            try {
+                // Try to find a Contact with matching email
+                List<Contact> matchedContacts = [
+                    SELECT Id, Email
+                    FROM Contact
+                    WHERE Email = :webEmail
+                    LIMIT 1
+                ];
+                
+                Id contactId = matchedContacts.isEmpty() ? null : matchedContacts[0].Id;
+        
+                Case newCase = new Case(
+                    Are_you_enquring_on_behalf_of_a_business__c = isBusiness,
+                    ContactId = contactId,
+                    Description = descriptionText,
+                    Origin = 'Created from Web Form',
+                    OwnerId = '00G4L000000dT61',
+                    RecordTypeId = '0124L000000pgrbQAA',
+                    Session_ID__c = sessionID,
+                    Status = 'New',
+                    Subject = 'Ticket from Web Form',
+                    SuppliedCompany = companyName,
+                    SuppliedEmail = webEmail,
+                    Support_Integration_Language__c = language,
+                    Support_Invoices_and_Billing__c = invoiceAndBilling,
+                    Support_Login__c = loginIssue,
+                    Support_Name__c = name,
+                    Support_New_Customer_Business__c = null,
+                    Support_Product__c = productLabel,
+                    Support_Query_Type_Business__c = queryTypeBusiness,
+                    Support_Query_Type_End_User__c = queryTypeIndividual,
+                    Support_Receipt_ID__c = receiptID,
+                    Support_Session_Query__c = sessionQuery,
+                    Support_Topic__c = valueOfTopic,
+                    Support_Was_FAQs_useful__c = isFAQUseful,
+                    Support_Was_FAQs_useful_DropDown__c = faqUseful
+                );
+        
+                insert newCase;
+                return newCase.Id;
+            } catch (Exception e) {
+                // Log the error for debugging purposes
+                System.debug('Error occurred while creating the case: ' + e.getMessage());
+                
+            }
+
+            return '';
+        }
+        
+        
+}

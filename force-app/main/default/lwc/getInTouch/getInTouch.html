@@ -1,0 +1,350 @@
+<template>
+    <template if:false={isMobileNavigation}>
+    <div class="main-container">
+    <template if:true={isSuccess}>
+    <div class="success-container">
+        <div class="icon-wrapper">
+            <img src={thankYouIcon} alt="Success" class="check-icon" />
+        </div>
+        <p class="heading">Thank you for submitting the form</p>
+        <p >Our support team will review your issue and contact you shortly.</p>
+    </div>
+</template>
+
+<template if:false={isSuccess}>
+    <div class="container">
+        
+        <div class="form-heading">
+        <h1>Contact us</h1>
+        <p>Please complete the form so our support team can fully understand your issue. Once submitted, we’ll be in touch shortly.</p>
+        </div>
+
+        <div class="form-container">
+
+        <div class="radio-container">
+        <p>Are you enquiring on behalf of a business?</p>
+        <div class="form-group-radio">
+            <input type="radio" name="businessInquiry" value="Yes" onchange={handleBusinessEnquiryInputChange} />
+            <p>Yes</p>
+        </div>
+        <div class="form-group-radio">
+            <input type="radio" name="businessInquiry" value="No" onchange={handleBusinessEnquiryInputChange} />
+            <p>No</p>
+        </div>
+        </div>
+
+        <template if:true={whatTypeOfUser}>
+        <div class="contact-details">
+        <p>Contact details</p>
+        <template if:true={isBusinessUser}>
+            <div class="form-group-floating">
+                <input type="text" name="companyName" value={companyName} oninput={handleInputChange} onfocus={handleFocus} onblur={handleBlur} class={companyNameInputClass} />
+                <label class={companyLabelClass}><span if:true={isCompanyNameInvalid} class="error-icon">✖&nbsp;</span>Company name</label>
+                <template if:true={isCompanyNameInvalid}>
+                    <div class="error-text">This field is required. Please complete it.</div>
+                </template>
+            </div>
+        </template>
+    
+        <div class="form-group-floating">
+            <input type="text" name="yourName" value={yourName} oninput={handleInputChange} onfocus={handleFocus} onblur={handleBlur} class={yourNameInputClass} />
+            <label class={yourNameLabelClass}><span if:true={isYourNameInvalid} class="error-icon">✖&nbsp;</span>Your name</label>
+            <template if:true={isYourNameInvalid}>
+                <div class="error-text">This field is required. Please complete it.</div>
+            </template>
+        </div>
+    
+        <div class="form-group-floating">
+            <input type="email" name="email" value={email} oninput={handleInputChange} onfocus={handleFocus} onblur={handleBlur} class={emailInputClass} />
+            <label class={emailLabelClass}><span if:true={isEmailInvalid} class="error-icon">✖&nbsp;</span>Email</label>
+            <template if:true={isEmailInvalid}>
+                <div class="error-text">This field is required. Please complete it.</div>
+            </template>
+        </div>
+        </div>
+    </template>
+
+        <template if:true={isBusinessUser}>
+        <div class="user-container">
+            <p>What can we help you with?</p>
+            <div class="custom-dropdown">
+                <label class={selectedLabelClassSupportBusiness}>Support type</label>
+                <select class={supportTypeClass} onchange={handleSupportTypeBusinessChange}>
+                    <option value="" selected hidden></option>
+                    <template for:each={supportTypeBusinessOptions} for:item="option">
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                    </template>
+                </select>
+                <template if:true={isSelectedSupportTypeBusinessInvalid}>
+                    <div class="error-text">This field is required. Please complete it.</div>
+                </template>
+            </div>
+
+            <template if:true={isSessionQuerySupport}>
+                <div class="custom-dropdown">
+                    <label class={selectedLabelClassSessionQuerySupport}>Session Query</label>
+                    <select class={sessionQuerySupportClass} onchange={handleSessionQuerySupportChange}>
+                        <option value="" selected hidden></option>
+                        <template for:each={sessionQuerySupportOptions} for:item="option">
+                            <option key={option.value} value={option.value}>{option.label}</option>
+                        </template>
+                    </select>
+                    <template if:true={isSelectedSessionQuerySupportInvalid}>
+                        <div class="error-text">This field is required. Please complete it.</div>
+                    </template>
+                </div>
+                <template if:true={isReceiptIDInputBox}>
+                <div class="form-group-floating">
+                    <input type="text" name="receiptID" value={receiptID} oninput={handleInputChange} onfocus={handleFocus} onblur={handleBlur} />
+                    <label class={receiptIDLabelClass}><span if:true={isEmailInvalid} class="error-icon">✖&nbsp;</span>Enter Receipt ID</label>
+                    <!-- <template if:true={isEmailInvalid}>
+                        <div class="error-text">This field is required. Please complete it.</div>
+                    </template> -->
+                </div>
+            </template>
+            <template if:true={isSessionIDInputBoxSupport}>
+                <div class="form-group-floating">
+                    <input type="text" name="sessionID" value={sessionID} oninput={handleInputChange} onfocus={handleFocus} onblur={handleBlur}/>
+                    <label class={sessionIDLabelClass}><span if:true={isEmailInvalid} class="error-icon">✖&nbsp;</span>Session ID</label>
+                    <!-- <template if:true={isEmailInvalid}>
+                        <div class="error-text">This field is required. Please complete it.</div>
+                    </template> -->
+                </div>
+                <div class="link-article-container">
+                    <div class="article-box">
+                        <img src={articleIcon} alt="articleIcon" class="custom-article-icon" />
+                        <p data-article="sessionIDInputBoxSupport">We can only look back on data for 28 days</p>
+                    </div>
+                </div>
+            </template>
+            </template>
+
+            <template if:true={isBusiness}>
+                <div class="link-article-container">
+                    <div class="article-box">
+                        <img src={articleIcon} alt="articleIcon" class="custom-article-icon" />
+                        <p data-article="business" onclick={redirectToArticle}>Have you checked <span class="mainLink">Yoti Business</span>?</p>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={isBusinessServiceOutage}>
+                <div class="link-article-container">
+                    <div class="article-box">
+                        <img src={articleIcon} alt="articleIcon" class="custom-article-icon" />
+                        <p data-article="businessServiceOutage" onclick={redirectToArticle}>Our system status is kept up to date on <span class="mainLink">status.yoti.com</span>. If you have checked this page and still have issues or questions please leave a note below</p>
+                    </div>
+                </div>
+            </template>
+
+            <template if:true={isNewCustomer}>
+                <div class="link-article-container">
+                    <div class="article-box">
+                        <img src={newCustomer} alt="newCustomer" class="custom-article-icon" />
+                        <p data-article="newCustomer" onclick={redirectToArticle}>Please contact our sales team instead to find out how Yoti can fit into your business.</br><span class="mainLink">Contact Yoti’s sales team</span></p>
+                    </div>
+                </div>
+            </template>
+            
+            <template if:true={isInvoiceBillingDropdown}>
+                <div class="custom-dropdown">
+                    <label class={selectedLabelClassInvoiceBilling}>Invoices and Billing</label>
+                    <select class="wide-combobox" onchange={handleInvoiceBillingChange}>
+                        <option value="" selected hidden></option>
+                        <template for:each={invoiceBillingOptions} for:item="option">
+                            <option key={option.value} value={option.value}>{option.label}</option>
+                        </template>
+                    </select>
+                </div>
+            </template>
+
+            <template if:true={isProductDropdown}>
+            <div class="custom-dropdown">
+                <label class={selectedLabelClassProduct}>Product</label>
+                <select class="wide-combobox" onchange={handleProductChange}>
+                    <option value="" selected hidden></option>
+                    <template for:each={productOptions} for:item="option">
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                    </template>
+                </select>
+            </div>
+        
+            <template if:true={isSDKIntegration}>
+            <div class="form-group-checkbox">
+                <input type="checkbox" name="sdkIntegration" onchange={handleSdkIntegrationValueChange} />
+                <p>We have integrated with Yoti’s SDK</p>
+            </div>
+            </template>
+        
+
+        <template if:true={isLanguageDropdown}>
+            <div class="custom-dropdown">
+                <label class={selectedLabelClassLanguage}>Language</label>
+                <select class="wide-combobox" onchange={handleLanguageChange}>
+                    <option value="" selected hidden></option>
+                    <template for:each={languageOptions} for:item="option">
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                    </template>
+                </select>
+            </div>
+        </template>
+
+            <template if:true={isTopicDropdown}>
+            <div class="custom-dropdown">
+                <label class={selectedLabelClassTopic}>Topic</label>
+                <select class="wide-combobox" onchange={handleTopicChange}>
+                    <option value="" selected hidden></option>
+                    <template for:each={topicOptions} for:item="option">
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                    </template>
+                </select>
+            </div>
+            </template>
+
+            <template if:true={isSessionQueryTopic}>
+                <div class="custom-dropdown">
+                    <label class={selectedLabelClassSessionQueryTopic}>Session Query</label>
+                    <select class="wide-combobox" onchange={handleSessionQueryTopicChange}>
+                        <option value="" selected hidden></option>
+                        <template for:each={sessionQueryTopicOptions} for:item="option">
+                            <option key={option.value} value={option.value}>{option.label}</option>
+                        </template>
+                    </select>
+                </div>
+                <template if:true={isSessionIDInputBox}>
+                <div class="form-group-floating">
+                    <input type="text" name="sessionID" value={sessionID} oninput={handleInputChange} onfocus={handleFocus} onblur={handleBlur} />
+                    <label class={sessionIDLabelClass}>Session ID</label>
+                </div>
+            </template>
+            </template>
+            
+            <template if:true={isLogin}>
+            <div class="custom-dropdown">
+                <label class={selectedLabelClassLoginIssue}>What’s your login issue?</label>
+                <select class="wide-combobox" onchange={handleLoginIssueChange}>
+                    <option value="" selected hidden></option>
+                    <template for:each={loginIssueOptions} for:item="option">
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                    </template>
+                </select>
+            </div>
+            </template>
+
+            <div class="helpful-article-container" if:true={isPortalAccess}>
+                <p>We think this article could help you:</p>
+                <div class="article-box">
+                    <img src={articleIcon} alt="articleIcon" class="custom-article-icon" />
+                    <p data-article="portalAccess" onclick={redirectToArticle}>How can I regain access to the portal?</p>
+                </div>
+            </div>
+
+            <div class="helpful-article-container" if:true={isForgotPassword}>
+                <p>We think this article could help you:</p>
+                <div class="article-box">
+                    <img src={articleIcon} alt="articleIcon" class="custom-article-icon" />
+                    <p data-article="resetPassword" onclick={redirectToArticle}>How to reset your password</p>
+                </div>
+            </div>
+            <div class="helpful-article-container" if:true={isChangedPhone}>
+                <p>We think this article could help you:</p>
+                <div class="article-box">
+                    <img src={articleIcon} alt="articleIcon" class="custom-article-icon" />
+                    <p data-article="deleteAccount" onclick={redirectToArticle}>How to delete your account</p>
+                </div>
+            </div>
+            <div class="helpful-article-container" if:true={isPasswordReset}>
+                <p>We think this article could help you:</p>
+                <div class="article-box">
+                    <img src={articleIcon} alt="articleIcon" class="custom-article-icon" />
+                    <p data-article="createAccount" onclick={redirectToArticle}>How to create your account</p>
+                </div>
+            </div>
+            <div class="helpful-article-container" if:true={isIntegration}>
+                <p>We think this article could help you:</p>
+                <div class="article-box">
+                    <img src={articleIcon} alt="articleIcon" class="custom-article-icon" />
+                    <p data-article="integration" onclick={redirectToArticle}>Link to Integration Documentation</p>
+                </div>
+            </div>
+            <div class="helpful-article-container" if:true={isDocumentation}>
+                <p>We think this article could help you:</p>
+                <div class="article-box">
+                    <img src={articleIcon} alt="articleIcon" class="custom-article-icon" />
+                    <p data-article="documentation" onclick={redirectToArticle}>Link to Developer Documentation</p>
+                </div>
+            </div>
+
+
+            <div class="radio-container" if:true={isRadioContainer}>
+                <p>Was the suggested article or documentation useful?</p>
+                <div class="form-group-radio">
+                    <input type="radio" name="documentationUseful" value="Yes" onchange={handleDocumentationUsefulInputChange} />
+                    <p>Yes</p>
+                </div>
+                <div class="form-group-radio">
+                    <input type="radio" name="documentationUseful" value="No" onchange={handleDocumentationUsefulInputChange} />
+                    <p>No</p>
+                </div>
+            </div>
+        </template>
+
+
+        </div>
+    </template>
+
+    <template if:true={isIndividualUser}>
+        <div class="user-container">
+            <p>Which product are you enquiring about?</p>
+            <div class="custom-dropdown">
+                <label class={selectedLabelClassSupportIndividual}>Support type</label>
+                <select class="wide-combobox" onchange={handleSupportTypeIndividualChange}>
+                    <option value="" selected hidden></option>
+                    <template for:each={supportTypeIndividualOptions} for:item="option">
+                        <option key={option.value} value={option.value}>{option.label}</option>
+                    </template>
+                </select>
+            </div>
+            <div class="link-article-container" if:true={isIndividualUserArticle}>
+                <div class="article-box">
+                    <img src={articleIcon} alt="articleIcon" class="custom-article-icon" />
+                    <p data-article="individualUser" onclick={redirectToArticle}>If you have a question or query regarding your results, please contact the organisation that has requested the check(s) to be performed.</p>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template if:true={isHowCanWeHelp}>
+        <div class="form-group-floating">
+            <textarea
+                id="description"
+                name="help"
+                placeholder=" "
+                onchange={handleHowCanWeHelpInputChange}>
+            </textarea>
+            <label for="description" class="floating">Please explain how can we help you</label>
+        </div>
+    </template>
+
+
+
+
+
+
+        <div class="info-box">
+            <lightning-icon icon-name="utility:info" size="x-small"></lightning-icon>
+            <p>
+                We will use your information to manage and respond to your query and for analytics.
+                For more information on how we use your personal data, please see our<a href="/privacy"> Privacy Notice</a>.
+            </p>
+        </div>
+
+        <button onclick={handleSubmit}>Submit</button>
+        <br/>
+        <p class="error-text" if:true={showAlert}>* Please review the errors before submitting the form.</p>
+    </div>
+</div>
+</template>
+</div>
+</template>
+</template>

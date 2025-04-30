@@ -1,0 +1,282 @@
+@font-face {
+    font-family: 'CustomFontRegular';
+    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
+}
+
+.footer-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-family: 'CustomFontRegular', GT-Eesti-Display-Regular ;
+    padding: 96px 24px 40px 24px;
+    background-color: #E9ECF0;
+}
+
+.wrapper{
+    max-width: 936px;
+    width: 100%;
+}
+
+/* --- Footer Content & Links Section (Side by Side) --- */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+}
+
+/* Left Side: Logo & Download */
+.footer-content {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.yoti-logo {
+    width: 100px;
+}
+
+.logo-section p {
+    color: #546072;
+    font-weight: 400;
+    line-height: 23px;
+}
+
+.download-section p{
+    color: #333B40;
+    font-weight: 700;
+    line-height: 19px;
+}
+
+.store-badges {
+    margin-top: 16px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.store-badges img {
+    width: 106px;
+    height: 30.5px;
+}
+
+
+/* Right Side: Links Sections */
+.links-section {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.links-section p {
+    margin-bottom: 24px;
+    font-family: 'CustomFontBold', GT-Eesti-Display-Bold;
+    color:#546072;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.links-section ul {
+    list-style: none;
+}
+
+.links-section li {
+    margin-bottom: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    color: #333B40;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+}
+
+.links-section a {
+    text-decoration: none;
+    color: #333B40;
+}
+
+.links-section li:hover {
+    color: #007bff;
+}
+
+/* Divider */
+.footer-divider {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 40px 0 ;
+}
+
+
+.certifications-company-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.certifications {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 24px; /* Spacing between certification images */
+    flex-wrap: wrap; /* Allows images to wrap if needed */
+}
+
+
+.company-info {
+    flex: 1; /* Allows text section to take remaining space */
+    color: #546072;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+}
+
+.company-info .address{
+    margin-bottom: 16px; /* Allows text section to take remaining space */
+}
+
+.locations {
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+.locations span {
+    margin-right: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.locations span:hover {
+    color: #333B40;
+}
+
+.locations .bold {
+    font-weight: 700;
+    color: #333B40;
+}
+
+.company-info .regNo{
+    font-size: 14px;
+    line-height: 20px;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+      width: 100%;
+      padding: 64px 24px 32px 24px;
+    }
+  
+    .footer-top {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+  
+    .footer-content {
+      width: 100%;
+      font-size: 14px;
+      line-height: 20px;
+      margin-bottom: 8px;
+
+    /* Center content horizontally */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    }
+  
+    .logo-section {
+      gap: 24px;
+      margin-bottom: 32px;
+      align-items: center; /* Center logo + copyright */
+    }
+  
+    .logo-section p {
+      line-height: 21px;
+    }
+
+    .download-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center text + badges */
+    }
+
+    .download-section p {
+      line-height: 18px;
+    }
+  
+    .store-badges {
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center; /* Make sure badges are centered */
+    }
+  
+    .store-badges img {
+      width: 100px;
+      height: auto;
+    }
+  
+    .links-section {
+        width: calc(50% - 12px);
+    }
+  
+    .links-section p {
+      font-size: 11px;
+      line-height: 20px;
+    }
+  
+    .links-section li {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  
+    .certifications-company-wrapper {
+      flex-direction: column-reverse;
+      gap: 48px;
+    }
+  
+    .certifications {
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .certifications img{
+        width : 15%;
+      }
+  
+    .company-info {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  
+    .company-info .regNo {
+      font-size: 13px;
+      line-height: 18px;
+    }
+  
+    .locations {
+      margin-top: 24px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .locations span {
+      margin-bottom: 8px;
+    }
+  }

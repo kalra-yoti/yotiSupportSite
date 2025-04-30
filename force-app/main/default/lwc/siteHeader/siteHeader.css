@@ -1,0 +1,141 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
+}
+
+.header-container {
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    font-family: 'CustomFont', GT-Eesti-Display-Regular;
+    font-size: 16px;
+    font-weight: 700;
+    top: 0;
+    background-color: white;
+    width: 100%;
+    box-shadow: 0px 8px 15px 0px rgba(51, 59, 64, 0.10);
+}
+
+/* Left side container: Logo + Navigation */
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.logo-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 70px;
+    height: 32px;
+}
+
+/* Navigation menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-menu a{
+    color: #546072;
+    text-decoration: none;
+}
+
+.nav-link {
+    padding: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.nav-link.active::after {
+    content: "";
+    display: flex; 
+    height: 4px;  /* thickness of the underline */
+    background-color: #254D78; /* dark blue color shown in screenshot */
+  }
+
+.nav-link:hover {
+    background: #F2F4F6 !important;
+}
+
+.nav-link:active {
+    background: #C5D2EB !important;
+}
+
+
+.nav-link:focus-visible {
+    outline: 8px solid #F500DC; 
+    background: #F2F4F6;
+}
+
+/* Search Section */
+.mobile-right-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Space between search icon and hamburger */
+}
+
+.search-bar{
+    display:block;
+}
+/* Search Icon for Mobile */
+.search-icon {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: #546072;
+    transition: 0.3s;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .header-container {
+        box-shadow: none;
+        padding: 16px 24px;
+    }
+
+    .nav-menu {
+        display: none;
+    }
+
+    .search-bar{
+        display:none;
+    }
+
+    .hamburger-menu {
+        display: flex;
+    }
+
+
+    .search-icon {
+        display: block;
+    }
+
+
+    .close-menu{
+        color:#333B40;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+    }
+}

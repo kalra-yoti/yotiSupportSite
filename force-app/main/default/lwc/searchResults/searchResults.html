@@ -1,0 +1,67 @@
+<template>
+    <template if:false={isMobileNavigation}>
+    <div class="container">
+    <div class="search-results-container">
+        <!-- Search Results Header -->
+        <h2 class="results-title">
+            {resultsCount} results found for “{keyword}”
+        </h2>
+
+        <!-- Refine Search Section -->
+        <div class="refine-search">
+            <p class="refine-title">Refine your search</p>
+        </div>
+
+
+            <div class="filters">
+                <!-- Product Dropdown -->
+                <div class="custom-dropdown">
+                    <label class={selectedLabelClassProduct}>Product or solution</label>
+                    <select class="wide-combobox" onchange={handleProductChange}>
+                        <option value="" selected hidden></option>
+                        <template for:each={productOptions} for:item="option">
+                            <option key={option.value} value={option.value}>{option.label}</option>
+                        </template>
+                    </select>
+                </div>
+        
+                <!-- Support Type Dropdown -->
+                <div class="custom-dropdown">
+                    <label class={selectedLabelClassSupport}>Support type</label>
+                    <select class="wide-combobox" onchange={handleSupportTypeChange}>
+                        <option value="" selected hidden></option>
+                        <template for:each={supportTypeOptions} for:item="option">
+                            <option key={option.value} value={option.value}>{option.label}</option>
+                        </template>
+                    </select>
+                </div>
+            </div>
+
+        <template if:true={isResultsCountZero}>
+            <hr>
+            <div class=zero-results>
+                <img src={warningIcon} alt="warning-icon"/>
+                <p>We couldn’t find any results matching the selected filters. Try adjusting them or searching for something different.</p>
+            </div>
+        </template>
+
+        <template for:each={filteredArticles} for:item="faq">
+            <div key={faq.Id} class="faq-card">
+                <p class="faq-title" id={faq.Id} data-topic={faq.Topic__c} data-subtopic={faq.Sub_Topic__c} data-subcategory={faq.Sub_Category__c} onclick={handleArticle}>{faq.Title}</p>
+                <p class="faq-description">{faq.Answer__c}</p>
+                
+         
+                <div class="faq-tags">
+                    <span class="tagFirst">
+                        <img src={faq.UrlName} alt="FAQ Icon" class="faq-icon" />
+                        {faq.Topic__c}
+                    </span>
+                    <span class="tag">{faq.Sub_Topic__c}</span>
+                    <span class="tag">{faq.Lastpublisheddate}</span>
+                </div>
+            </div>
+        </template>
+
+    </div>
+</div>
+</template>

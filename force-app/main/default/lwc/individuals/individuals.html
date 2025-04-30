@@ -1,0 +1,42 @@
+<template>
+<template if:false={isMobileNavigation}>
+  <div class="container">
+      <div class="section">
+          <h2 class="section-title">Browse by product</h2>
+          <div class="product-list">
+              <template for:each={products} for:item="product">
+                  <div key={product.name} class="product-card">
+                      <div class="product-info">
+                          <img class="product-icon" src={product.image} alt={product.name} />
+                          <h3 class="product-name">{product.name}</h3>
+                      </div>
+                      <p class="product-description">{product.description}</p>
+                      <a href={product.link} class="view-faqs">View FAQs
+                          <img src={rightArrow} alt="Arrow Icon" class="arrow-icon">
+                      </a>
+                  </div>
+              </template>
+          </div>
+      </div>
+
+      <div class="section">
+          <h2 class="section-title">Other support topics</h2>
+          <div class="support-list">
+              <template for:each={supportTopics} for:item="topic">
+                  <div key={topic.title} class="support-category">
+                      <h3 class="support-title">{topic.title}</h3>
+                      <div class="support-items">
+                          <template for:each={topic.items} for:item="item">
+                            <a key={item.name} href={item.link} onclick={handleSupportTopics} class="support-item">
+                              {item.name}
+                              <img src={item.icon} alt="Arrow Icon" class="arrow-icon">
+                            </a>
+                          </template>
+                      </div>
+                  </div>
+              </template>
+          </div>
+      </div>
+  </div>
+</template>
+</template>

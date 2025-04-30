@@ -1,0 +1,14 @@
+<template>
+  <template if:false={isMobileNavigation}>
+  <div class="main-container">
+  <div class="container">
+      <h1 class="heading">Most visited articles</h1>
+      <section class="faq-section">
+          <template for:each={faqItems} for:item="faq">
+            <p key={faq.id} id={faq.id} class="faq-title" data-topic={faq.topic} data-subtopic={faq.subtopic} data-subcategory={faq.subcategory} onclick={handleArticle}>{faq.question}</p>
+          </template>
+      </section>
+    </div>
+  </div>
+</template>
+</template>

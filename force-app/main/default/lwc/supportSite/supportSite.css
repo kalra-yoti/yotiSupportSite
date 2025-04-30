@@ -1,0 +1,214 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
+}
+
+
+/* Overall container with a blue background */
+.main-container {
+    background-color: #165080; /* Adjust to match your brand’s blue */
+    padding: 170px 24px;
+    text-align: center;
+    color: #ffffff; /* White text on blue background */
+    font-family: 'CustomFont', GT-Eesti-Display-Regular;
+    font-size: 24px;
+    font-weight: 700;
+    width: 100%;
+    height:816px;
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper{
+        max-width: 936px;
+        width: 100%;
+}
+
+.hero-container {
+    display: flex;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    gap: 20px;
+}
+
+.hero-text {
+    width: 600px;
+    text-align: left;
+}
+
+.hero-title {
+    font-size: 52px;
+    font-weight: 700;
+    color: white;
+    line-height: 100%;
+    font-style: normal;
+}
+
+/* Wrapper around the icon and input */
+.search-wrapper {
+    display: inline-flex;
+    margin-top: 32px;
+    align-items: center;
+    border: 2px solid #9BA5B4;
+    border-radius: 4px;
+    padding: 12px;
+    background-color: #ffffff;
+    width: 491px;
+    color: #546072;
+}
+
+/* The icon (e.g., <lightning-icon> or <svg>) */
+.search-wrapper lightning-icon,
+.search-wrapper svg {
+    margin-right: 4px;
+    --slds-c-icon-color-foreground-default: #546072;
+}
+
+/* The text input */
+.search-input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 23px;
+}
+
+.search-input::placeholder {
+    color: #546072;
+    opacity: 1;
+}
+
+.illustration-wrapper {
+    width: 300px;
+    text-align: right; /* Align image to the right */
+}
+
+.illustration {
+    height: auto;
+}
+
+/* Cards container for business and individuals support */
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Ensures responsiveness on smaller screens */
+    margin-top: 80px;
+}
+
+.support-card {
+    flex: 1;
+    width: 450px;
+    background-color: white;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333B40;
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Adjust space between icon and text */
+    font-style: normal;
+}
+
+.card-icon {
+    width: 32px; /* Adjust icon size */
+    height: 32px;
+}
+
+.card-text {
+    font-size: 18px;
+    color: #546072;
+    margin: 16px 0;
+}
+
+.card-link {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Space between text and arrow */
+    text-decoration: none;
+    font-weight: 700;
+    color: #27619B; /* Adjust to match your theme */
+    font-size: 18px;
+    font-style: normal;
+}
+
+.arrow-icon {
+    width: 16px; /* Adjust icon size */
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.card-link:hover .arrow-icon {
+    transform: translateX(5px); /* Adds a small movement effect on hover */
+}
+
+@media only screen and (max-width: 768px) {
+    .main-container {
+        width: 100%;
+        padding: 40px 24px;
+        height: auto;
+        font-size: 18px;
+    }
+
+    .hero-container {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .hero-text {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 36px;
+    }
+
+    .search-wrapper {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px;
+        margin-top: 32px;
+    }
+
+    .illustration-wrapper {
+        width: 100%;
+        text-align: center;
+        margin-top: 24px;
+    }
+
+    .illustration {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+        gap: 24px;
+    }
+
+    .support-card {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 23px;
+        gap: 16px;
+    }
+
+}

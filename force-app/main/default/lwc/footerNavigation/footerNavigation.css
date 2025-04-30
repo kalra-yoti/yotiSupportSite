@@ -1,0 +1,89 @@
+@font-face {
+    font-family: 'CustomFont';
+    src: url('/resource/CustomFont/GT-Eesti-Display-Regular.woff2') format('woff2');
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px 157px;
+    background-color: #ffffff;
+    font-family: 'CustomFont', GT-Eesti-Display-Regular ;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.text-wrapper {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 147%; 
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+a.text-wrapper{
+  color: #546072 !important;
+  text-decoration: none !important;
+}
+
+.text-wrapper:hover {
+    color: #000 !important;
+}
+
+.socialMediaLogos{
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  cursor: pointer;
+
+}
+
+.facebook {
+    width: 24px;
+    height: 24px;
+}
+
+.twitter {
+  width: 27px;
+  height: 24px;
+}
+
+.instagram {
+  width: 24px;
+  height: 24px;
+}
+
+.linkedin {
+  width: 24px;
+  height: 24px;
+  aspect-ratio: 1/1;
+}
+
+.youtube {
+  width: 29px;
+  height: 20px;
+  aspect-ratio: 29/20;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      padding: 32px 24px;
+      gap: 40px;
+    }
+  
+  
+    .navbar {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+  }
+  

@@ -1,0 +1,11 @@
+<template>
+    <template if:true={isSearchIconClicked}>
+    <div class="search-container">
+        <div class="input-wrapper">
+            <lightning-icon icon-name="utility:search" alternative-text="Search" size="x-small"></lightning-icon>
+            <input type="text" placeholder="Search for your question" part="custom-button" class="search-input" oninput={handleInput} />
+        </div>
+        <button class="search-button" onclick={handleSearch}>Search</button>
+    </div>
+</template>
+</template>

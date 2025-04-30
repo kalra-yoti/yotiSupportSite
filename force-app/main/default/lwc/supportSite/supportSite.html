@@ -1,0 +1,55 @@
+<template>
+    <template if:false={isMobileNavigation}>
+    <div class="main-container">
+    <div class="wrapper">
+    <div class="hero-container">
+         <!-- Left Section: Title & Search Bar -->
+         <div class="hero-text">
+            <h1 class="hero-title">What kind of support do you need?</h1>
+            <div class="search-wrapper">
+                    <lightning-icon icon-name="utility:search" alternative-text="Search" size="x-small"></lightning-icon>
+                    <input type="text" placeholder="Search for your question" class="search-input" onkeydown={handleKeyPress} />
+            </div>
+        </div>
+
+        <!-- Right Section: Illustration -->
+        <div class="illustration-wrapper">
+            <img src={imageHome} alt="Support Illustration" class="illustration" />
+        </div>
+    </div>
+
+        <!-- Cards Section -->
+        <div class="cards-container">
+            <!-- Business Support Card -->
+            <div class="support-card">
+                <h2 class="card-title">
+                    <img src={businessSupport} alt="Business Icon" class="card-icon">
+                    Business support
+                </h2>
+                <p class="card-text">
+                    I’m an existing or new client and would like to answer some
+                    questions about IoT’s solutions.
+                </p>
+                <a href="/yotiSupportSite/businesses-page?type=Business" onclick={handleCategoryClick} data-category="business" class="card-link">Explore business support
+                    <img src={rightArrow} alt="Arrow Icon" class="arrow-icon">
+                </a>
+            </div>
+
+            <!-- Individuals Support Card -->
+            <div class="support-card">
+                <h2 class="card-title">
+                    <img src={individualSupport} alt="Business Icon" class="card-icon">
+                    Individuals support</h2>
+                <p class="card-text">
+                    I’m an individual using a IoT product and I need help with a
+                    question or issue.
+                </p>
+                <a href="/yotiSupportSite/individuals-page?type=Individual" data-category="individuals" onclick={handleCategoryClick} class="card-link">Explore individuals support
+                    <img src={rightArrow} alt="Arrow Icon" class="arrow-icon">
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+</template>
+</template>
