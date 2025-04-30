@@ -1,10 +1,10 @@
 <template>
-
+  <template if:false={isMobileNavigation}>
     <div class="div-wrapper">
         <div class="div">
-          <div class="page-link-label" onclick={handleType}>{type}</div>
+          <div class="page-link-label" onclick={handleType}><a style="color:#27619B" href={pageLink}>{type}</a></div>
           <img class="solid-chevron" src={rightIconT} />
-          <div class="page-link-label" onclick={handleProduct} >{product}</div>
+          <div class="page-link-label" onclick={handleProduct} ><a style="color:#27619B" href={pageLinkWithProduct}>{product}</a></div>
           <img class="solid-chevron" src={rightIconT} />
           <div class="text-wrapper">{category}</div>
         </div>
@@ -35,5 +35,5 @@
           </div>
         </div>
       </div>
-    
+  </template>  
 </template>

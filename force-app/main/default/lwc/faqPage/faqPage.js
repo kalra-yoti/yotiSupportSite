@@ -1,4 +1,4 @@
-import { LightningElement,track } from 'lwc';
+import { LightningElement,track,wire } from 'lwc';
 
 import righticon from '@salesforce/resourceUrl/rightIcon';
 import IMAGES from '@salesforce/resourceUrl/Images';
@@ -7,6 +7,9 @@ import getArticle from '@salesforce/apex/YotiSupportSiteController.getArticleByI
 import updateViews from '@salesforce/apex/YotiSupportSiteViewHandler.updateViews';
 
 import getRelatedArticles from '@salesforce/apex/YotiSupportSiteController.getRelatedArticle';
+import { subscribe,publish, MessageContext } from 'lightning/messageService';
+import HMC from '@salesforce/messageChannel/HamburgerMessageChannel__c';
+import DNMC from '@salesforce/messageChannel/DesktopNavigationMessageChannel__c';
 
 
 export default class FaqPage extends LightningElement {
@@ -21,12 +24,30 @@ export default class FaqPage extends LightningElement {
     category = null
     formattedDate = ''
     @track relatedData = []
+    subscription = null;
+    @track isMobileNavigation=false;
+    
+    pageLink = ''
+    pageLinkWithProduct = ''
+    receivedMessage;
+    @wire(MessageContext)
+        messageContext;
 
     async connectedCallback(){
-         
+        
+        let url = new URL(window.location.href);
+        this.type = url.searchParams.get('type');
         this.product = url.searchParams.get('product');
         this.articleId = url.searchParams.get('articleId');
         this.category = url.searchParams.get('category');
+
+        if(this.type == 'Individuals'){
+           this.pageLink = '/yotiSupportSite/individuals-page?type=Individuals'
+           this.pageLinkWithProduct = '/yotiSupportSite/category?type=Individuals&product='+this.product
+        }else{
+            this.pageLink = '/yotiSupportSite/businesses-page?type=Businesses'
+            this.pageLinkWithProduct = '/yotiSupportSite/category?type=Businesses&product='+this.product
+        }
 
         if(this.type == null || this.type == undefined || this.type == '' || this.product == null || this.product == undefined || this.product == '' || this.articleId == null || this.articleId == undefined || this.articleId == '' || this.category == null || this.category == undefined || this.category == ''){
             window.location.href = '/yotiSupportSite/error-page';
@@ -70,7 +91,7 @@ export default class FaqPage extends LightningElement {
         .catch(error => {
             console.log('error:getArticle ' , error);});
 
-        await getRelatedArticles({subCategory: this.category})
+        await getRelatedArticles({subCategory: this.category,product: this.product})
             .then(result => {
                 console.log('result111: ' , result);
                 if(result.length > 0){
@@ -81,8 +102,20 @@ export default class FaqPage extends LightningElement {
             })
             .catch(error => {
                 console.log('error: getRelatedArticles ' , error);});    
+
+        this.subscription = subscribe(this.messageContext, HMC, (message) => {
+                this.handleMessage(message);
+        });
     }
 
+    handleMessage(message) {
+        this.receivedMessage = message.messageText;
+        if (this.receivedMessage === 'Hamburger Clicked' || this.receivedMessage === 'Search Icon Clicked') {
+            this.isMobileNavigation = true;
+        } else {
+            this.isMobileNavigation = false;
+        }
+    }
     
     renderedCallback() {
         console.log('renderedCallback');
@@ -100,9 +133,10 @@ export default class FaqPage extends LightningElement {
         }
 
         const richTextContainerTemp = this.template.querySelector('.title');
-        const sanitizedHTML = this.articleData.Question__c.replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1');
+        console.log('this.articleData: ' , JSON.stringify(this.articleData));
         if (richTextContainer && this.articleData) {
             // Insert the rich text data as innerHTML
+            const sanitizedHTML = this.articleData.Question__c.replace(/<a\b[^>]*>(.*?)<\/a>/gi, '$1');
             richTextContainerTemp.innerHTML = sanitizedHTML;
         }   
     }
@@ -118,19 +152,17 @@ export default class FaqPage extends LightningElement {
     }
 
     handleType(){
-        if(this.type == 'Individuals'){
-             window.location.href = '/yotiSupportSite/individuals-page'
-       }else{
-            window.location.href = '/yotiSupportSite/businesses-page'
-       }
+        
+        publish(this.messageContext, DNMC, {
+         messageText: (this.type).toLowerCase()
+        });
     }
 
     handleProduct(){
-        console.log('this.product: ***' , this.product);
-       if(this.type == 'Individuals'){
-             window.location.href = '/yotiSupportSite/category?type=Individuals&product='+this.product
-       }else{
-            window.location.href = '/yotiSupportSite/category?type=Businesses&product='+this.product
-       }
+       console.log('this.product: ***' , this.product);
+       
+       publish(this.messageContext, DNMC, {
+        messageText: (this.type).toLowerCase()
+       });
     }
 }

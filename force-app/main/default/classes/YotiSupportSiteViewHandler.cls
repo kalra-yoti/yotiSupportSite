@@ -15,7 +15,7 @@ global without sharing class YotiSupportSiteViewHandler {
                 }
                 
             } catch (Exception e) {
-                System.debug('Error updating article views ' + e.getMessage());
+                System.debug('Error updating article views ' + e.getMessage()); 
             }
 
         }

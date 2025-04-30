@@ -112,7 +112,7 @@ global with sharing class YotiSupportSiteController {
     
 
         @AuraEnabled
-        global static List<Knowledge__kav> getRelatedArticle(String subCategory) {
+        global static List<Knowledge__kav> getRelatedArticle(String subCategory,String product) {
             if (String.isEmpty(subCategory)) {
                 return new List<Knowledge__kav>();
             }
@@ -121,13 +121,37 @@ global with sharing class YotiSupportSiteController {
            System.debug('subCategory '+subCategory);
             try {
                 List<Knowledge__kav> articles = [
-                    SELECT Id, Title, PublishStatus,Sub_Category__c
+                    SELECT Id, Title, PublishStatus,Sub_Category__c,View_Count_for_LWR__c
                     FROM Knowledge__kav
                     WHERE Sub_Category__c = :subCategory
                     AND PublishStatus = 'Online'
-                    AND Language = 'en_US' limit 100
+                    AND Language = 'en_US'
+                    AND View_Count_for_LWR__c != null
+                    order by View_Count_for_LWR__c DESC limit 5
                 ];
-                return getRandomKnowledgeRecords(articles);
+
+                if(articles.size() < 5){
+                    List<Knowledge__kav> articlesTemp = [
+                        SELECT Id, Title, PublishStatus,Sub_Category__c,View_Count_for_LWR__c
+                        FROM Knowledge__kav
+                        WHERE Sub_Category__c != :subCategory
+                        AND Sub_Topic__c = :product
+                        AND PublishStatus = 'Online'
+                        AND Language = 'en_US'
+                        AND View_Count_for_LWR__c != null
+                        order by View_Count_for_LWR__c DESC limit 5
+                    ];
+
+                   Integer size = 5 - articles.size();
+                    if(size > articlesTemp.size()){
+                        size = articlesTemp.size();
+                    }
+                    for(Integer i=0;i<size;i++){
+                        articles.add(articlesTemp[i]);
+                    } 
+                }
+               
+                return articles;
                 
             } catch (Exception e) {
                 System.debug('Error fetching Knowledge Articles: ' + e.getMessage());

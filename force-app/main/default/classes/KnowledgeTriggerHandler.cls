@@ -15,7 +15,7 @@ public class KnowledgeTriggerHandler {
                 avcTemp.Knowledge_Article_Id__c = idTemp;
                 avcTemp.Article_View_Count__c = 0;
                 avcList.add(avcTemp);
-            }
+            } 
         }
         
         if(avcList.size()>0){

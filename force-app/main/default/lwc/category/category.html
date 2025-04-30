@@ -1,4 +1,5 @@
 <template>
+  <template if:false={isMobileNavigation}>
   <div class="category-landing">
     <div class="div-6">
       <div class="div-7">
@@ -19,7 +20,8 @@
                 <div class="div-8">
                     <template for:each={item.titleLink} for:item="item1">
                         <li  class="article-text-link" key={item1.id}>
-                            <p onclick={handleArticle} id={item1.id} data-id={item.name} class="article-title">{item1.name}</p>
+                            <a class="article-title"  href={item1.link}>{item1.name}</a>
+                            <!--<p onclick={handleArticle} id={item1.id} data-id={item.name} class="article-title">{item1.name}</p> -->
                         </li>
                     </template>
                 </div>
@@ -28,5 +30,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div></template>
 </template>

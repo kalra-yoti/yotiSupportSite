@@ -1,6 +1,8 @@
-import { LightningElement,wire } from 'lwc';
+import { LightningElement,wire,track } from 'lwc';
 import getArticle from '@salesforce/apex/YotiSupportSiteController.getArticles';
-import { CurrentPageReference } from 'lightning/navigation';
+
+import { subscribe, MessageContext } from 'lightning/messageService';
+import HMC from '@salesforce/messageChannel/HamburgerMessageChannel__c';
 
 export default class Category extends LightningElement {
 
@@ -14,6 +16,14 @@ export default class Category extends LightningElement {
    type = null
    product = null
    isBusiness = ''
+   subscription = null;
+   
+   @track isMobileNavigation=false;
+   
+   receivedMessage;
+   
+   @wire(MessageContext)
+       messageContext;
 
  
   async connectedCallback(){
@@ -39,9 +49,22 @@ export default class Category extends LightningElement {
     await this.getKArticle(this.type,this.product);
     //this.transformData();
     console.log('type: ' , this.type);
-    console.log('product: ' , this.product);  
+    console.log('product: ' , this.product);
+    
+    this.subscription = subscribe(this.messageContext, HMC, (message) => {
+                this.handleMessage(message);
+            });
 
    }
+
+   handleMessage(message) {
+    this.receivedMessage = message.messageText;
+    if (this.receivedMessage === 'Hamburger Clicked' || this.receivedMessage === 'Search Icon Clicked') {
+        this.isMobileNavigation = true;
+    } else {
+        this.isMobileNavigation = false;
+    }
+ }
 
    transformData(inputData) {
     
@@ -53,7 +76,8 @@ export default class Category extends LightningElement {
         name: key,
         titleLink: inputData[key].map((value, valueIndex) => ({
             id: value.id,
-            name: value.title
+            name: value.title,
+            link: '/yotiSupportSite/article-detail?type='+this.type+'&product='+this.product+'&articleId='+value.id+'&category='+key
         }))
     }));
 }

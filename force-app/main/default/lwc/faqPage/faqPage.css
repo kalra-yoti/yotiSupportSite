@@ -184,8 +184,8 @@ height: 16px;
 /* Responsive Design */
 @media screen and (max-width: 768px) {
 .div-wrapper {
-  padding: 0px;
-  gap: 24px;
+  padding: 4px;
+  gap: 48px;
 }
 .div-wrapper .div-5 {
 display: flex;
@@ -209,7 +209,7 @@ width: fit-content /* Third item moves to a new row */
 }
 .div-2 {
   flex-direction: column;
-  gap: 20px;
+  gap: 48px !important;
 }
 .title {
   font-size: 22px;
@@ -220,7 +220,7 @@ width: fit-content /* Third item moves to a new row */
 }
 
 .div-wrapper .div-3 {
-width: calc(100% - 40px); /* Full width with 20px margin on each side */
+width: calc(100% - 36px); /* Full width with 20px margin on each side */
 margin: 0 auto; /* Center it */
 }
 .button {
@@ -228,7 +228,7 @@ margin: 0 auto; /* Center it */
 }
 
 .div-wrapper .div-6 {
-width: calc(100% - 40px); /* Full width with 20px margin on each side */
+width: calc(100% - 36px); /* Full width with 20px margin on each side */
 margin: 0 auto; /* Center it */
 }
 }

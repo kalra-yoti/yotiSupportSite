@@ -42,6 +42,8 @@
   }
 
 
+
+
   .category-landing .div-4 {
     display: flex;
     flex-direction: column;
@@ -147,7 +149,20 @@
     line-height: 36.48px; /* 36.48px */
   }
   
-    
+   
+    /* Mobile: 320px - 768px */
+@media (max-width: 768px) {
+  .category-landing .div-wrapper {
+    padding: 10px 15px;
+    max-height: 120px;
+  }
+
+  .category-landing .div-4 {
+    gap:16px !important;
+    padding-left: 10px;
+  }
+
+}
   
   .font {
     font-family: 'CustomFont1', GT-Eesti-Display-Bold ;
